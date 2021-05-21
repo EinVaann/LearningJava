@@ -26,7 +26,12 @@ public class teacherInfoController {
      {
          this.teacherInfoRepository = teacherInfoRepository;
      }
-
+    @GetMapping("/teachers")
+    public String getAllTeachers(@ModelAttribute("loginInfo") loginInfo info,Model model) {
+        List<teacherInfo> teacherInfos = teacherInfoRepository.findAll();
+        model.addAttribute("aaa",teacherInfos);
+        return "Teacher";
+    }
     @PostMapping("/teacher")
     public String signUpSave(@ModelAttribute("teacherInfo") teacherInfo info) {
         //System.out.println(info.getEmail());
@@ -36,11 +41,6 @@ public class teacherInfoController {
     }
 
 
-    @GetMapping("/sign")
-    public String getAllTeachers(Model model) {
-        List<teacherInfo> teacherInfos = teacherInfoRepository.findAll();
-        model.addAttribute("aaa",teacherInfos);
-        return "Teacher";
-    }
+
 
 }
