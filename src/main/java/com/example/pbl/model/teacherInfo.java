@@ -9,13 +9,13 @@ public class teacherInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long ID;
 
-    String name;
+    private String name;
 
-    String subject;
+    private String subject;
 
-    String phone;
+    private String phone;
 
-    String Email;
+    private String Email;
 
     public long getID() {
         return ID;
