@@ -24,6 +24,7 @@ class UI {
             <td>${teacher.phone}</td>
             <td>${teacher.email}</td>
             <td><a href="" class="btn btn-danger btn-sm delete">X</a></td>
+            <td><a href="" class="btn btn-danger btn-sm delete">X</a></td>
         `;
         list.appendChild(newTeacher);
     }
@@ -92,7 +93,7 @@ function add(e){
     const id = document.getElementById('id').value;
     const name = document.getElementById('name').value;
     const subject = document.getElementById('subject').value;
-    const phoneNumber = document.getElementById('phone').value;
+    const phone = document.getElementById('phone').value;
     const email = document.getElementById('email').value;
 
     if(id === '' || name === '' || subject === '' || phone === '' || email === ''){

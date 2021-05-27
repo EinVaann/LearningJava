@@ -10,7 +10,7 @@
     <title>Giáo Viên</title>
 </head>
 <body>
-<div class="container"  id="container">
+<div class="container "  id="container">
     <form  action="teacher" method="post" modelattribute="TeacherInfo">
     <div class="form-container Teacher-container">
     <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Danh <span class="text-primary">Sách </span>Giáo Viên</h1>
@@ -41,14 +41,18 @@
             <th></th>
            </tr>
         </thead>
-        <tbody>
-        <tr>
+        <tbody id = "teacher-list">
+        <tr> <!--th:each="teacherInfo : ${aaa}"-->
+          <!--  <td th:text="${teacherInfo.ID}"></td>
+            <td th:text="&{teacherInfo.name}"></td>
+            <td th:text="${teacherInfo.subject}"></td>
+            <td th:text="${teacherInfo.phone}"></td>
+            <td th:text="${teacherInfo.email}"></td>-->
 
-            <ul th:each="teacherInfo : ${aaa}">
-                <li th:text ="${teacherInfo.ID+''+teacherInfo.name+''+teacherInfo.subject+
-                ''+teacherInfo.phone+''+teacherInfo.email}">
+          <  <ul th:each="teacherInfo : ${aaa}">
+                <li th:text ="${teacherInfo.ID+''+' '+''+teacherInfo.name+''+' '+''+teacherInfo.subject+
+                ''+' '+''+teacherInfo.phone+''+' '+''+teacherInfo.email}">
                 </li>
-                <li th:text="${teacherInfo.email}"></li>
             </ul>
         </tr>
         </tbody>

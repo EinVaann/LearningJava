@@ -15,7 +15,7 @@ public class teacherInfo {
 
     private String phone;
 
-    private String Email;
+    private String email;
 
     public long getID() {
         return ID;
@@ -50,10 +50,10 @@ public class teacherInfo {
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        email = email;
     }
 }

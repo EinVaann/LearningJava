@@ -5,6 +5,7 @@ import com.example.pbl.repository.TeacherInfoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class TeacherInfoService implements ITeacherInfoService {
@@ -29,5 +30,11 @@ public class TeacherInfoService implements ITeacherInfoService {
     @Override
     public void remove(Long id) {
         teacherInfoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<teacherInfo> findBySubject(String subject)
+    {
+        return teacherInfoRepository.findBySubject(subject);
     }
 }

@@ -27,13 +27,14 @@ public class teacherInfoController {
          this.teacherInfoRepository = teacherInfoRepository;
      }
     @GetMapping("/teachers")
-    public String getAllTeachers(@ModelAttribute("loginInfo") loginInfo info,Model model) {
-        List<teacherInfo> teacherInfos = teacherInfoRepository.findAll();
+    public String getAllTeachers(@ModelAttribute("teacherInfo") teacherInfo info,Model model) {
+       List<teacherInfo> teacherInfos = teacherInfoRepository.findAll();
+        //List<teacherInfo> teacherInfos = teacherInfoRepository.findBySubject("Anh");
         model.addAttribute("aaa",teacherInfos);
         return "Teacher";
     }
     @PostMapping("/teacher")
-    public String signUpSave(@ModelAttribute("teacherInfo") teacherInfo info) {
+    public String teacherInfoSave(@ModelAttribute("teacherInfo") teacherInfo info) {
         //System.out.println(info.getEmail());
         teacherInfoService.save(info);
         return "greeting";
