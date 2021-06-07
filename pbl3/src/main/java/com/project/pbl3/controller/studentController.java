@@ -21,7 +21,7 @@ public class studentController {
     @GetMapping("/class/{grade}")
     private String getStudentList(Model model, @PathVariable String grade){
         List<students> studentList = studentService.findByGrade(grade);
-        System.out.println(studentList.size());
+       // System.out.println(studentList.size());
         model.addAttribute("studentList",studentList);
         return "studentList";
     }
