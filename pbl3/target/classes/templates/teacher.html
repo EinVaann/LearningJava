@@ -48,7 +48,7 @@
                                 <label class="triangle" for="id"></label>ID</th>
                             <th><input type="radio" name="Subjects" class="radio-button" id="name" onclick="addUrlParameter('sort','name');">
                                 <label class="triangle" for="name"></label>Họ và Tên</th>
-                            <th>Môn Học</th>
+                            <th>ID Môn Học</th>
                             <th>SĐT</th>
                             <th>Email</th>
                             <th ><a href="add-teacher" class="add-button ">Add</a></th>
@@ -62,7 +62,8 @@
                             <td th:text="${teacher.subjectID}"></td>
                             <td th:text="${teacher.phone}"></td>
                             <td th:text="${teacher.email}"></td>
-                            <td><a href="edit-teacher">Edit</a>  <a href="delete-teacher">Delete</a> </td>
+                            <td><span><a th:href="@{'edit-teacher?id='+${teacher.getID()}}">Edit</a> | </span>
+                                <span><a th:href="@{'delete-teacher?id='+${teacher.getID()}}">Delete</a> | </span> </td>
 
                         </ul>
                     </tr>
@@ -89,7 +90,7 @@
 
             param =  urlParam.get('sort')!=null?urlParam.get('sort'):'id';
             div = document.getElementById(param);
-            div.checked=true;
+            div.checked = true;
         }
     </script>
 </body>

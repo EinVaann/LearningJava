@@ -20,7 +20,7 @@ public class teachers {
 
     private String email;
 
-    public long getID() {
+    public Integer getID() {
         return ID;
     }
 
