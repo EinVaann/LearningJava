@@ -55,8 +55,8 @@
                         </tr>
                     </thead>
                     <tbody id="teacher-list">
-                    <tr>
-                        <ul th:each="teacher : ${teacherList}">
+                    <tr th:each="teacher : ${teacherList}">
+                        <ul >
                             <td th:text="${teacher.ID}"></td>
                             <td th:text="${teacher.name}"></td>
                             <td th:text="${teacher.subjectID}"></td>

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SubjectService {
+public class SubjectService{
 
     @Autowired
     private SubjectRepository subjectRepository;
@@ -32,4 +32,10 @@ public class SubjectService {
         }
         throw new Exception("Can't find subject in database");
     }
+
+    public List<subjects> findAll(){
+        return subjectRepository.findAll();
+    }
+
+
 }

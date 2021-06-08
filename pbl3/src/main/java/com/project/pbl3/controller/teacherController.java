@@ -1,14 +1,13 @@
 package com.project.pbl3.controller;
 
+import com.project.pbl3.model.subjects;
 import com.project.pbl3.model.teachers;
 import com.project.pbl3.service.SubjectService;
 import com.project.pbl3.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -56,5 +55,19 @@ public class teacherController {
         //System.out.println(teacherList.size());
         model.addAttribute("teacherList",teacherList);
         return "teacher";
+    }
+
+    @GetMapping("/add-teacher")
+    public String addTeacher(Model model){
+        List<subjects> subjectsList= subjectService.findAll();
+        model.addAttribute("subjectList",subjectsList);
+        return "add-teacher";
+
+    }
+
+    @PostMapping("/add-teacher")
+    public String addTeacher(@ModelAttribute("teachers") teachers teacherInfo){
+        teacherService.save(teacherInfo);
+        return "redirect:/teacher";
     }
 }

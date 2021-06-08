@@ -31,4 +31,8 @@ public class TeacherService {
         return teacherRepository.findAll();
     }
 
+    public void save(teachers teacherInfo){
+        teacherRepository.save(teacherInfo);
+    }
+
 }
