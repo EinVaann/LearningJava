@@ -35,4 +35,12 @@ public class TeacherService {
         teacherRepository.save(teacherInfo);
     }
 
+    public teachers getTeacherById(Integer id){
+        return teacherRepository.getOne(id);
+    }
+
+    public void deleteTeacherById(Integer id){
+        teacherRepository.delete(teacherRepository.getOne(id));
+    }
+
 }

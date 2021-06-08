@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class teachers {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long ID;
+    private Integer ID;
 
     private String name;
 
@@ -24,7 +24,7 @@ public class teachers {
         return ID;
     }
 
-    public void setID(long ID) {
+    public void setID(Integer ID) {
         this.ID = ID;
     }
 

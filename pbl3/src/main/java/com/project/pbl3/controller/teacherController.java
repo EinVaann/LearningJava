@@ -65,7 +65,28 @@ public class teacherController {
     @PostMapping("/add-teacher")
     public String addTeacher(@ModelAttribute("teachers") teachers teacherInfo){
         teacherService.save(teacherInfo);
-        System.out.println(teacherInfo.getEmail());
+        //System.out.println(teacherInfo.getEmail());
+        return "redirect:/teacher";
+    }
+    @PostMapping("/edit-teacher")
+    public String editTeacher(@ModelAttribute("teachers") teachers teacherInfo){
+        teacherService.save(teacherInfo);
+        //System.out.println(teacherInfo.getEmail());
+        return "redirect:/teacher";
+    }
+
+    @GetMapping("/edit-teacher")
+    public String editTeacher(Model model,@RequestParam int id){
+        teachers teachers = teacherService.getTeacherById(id);
+        model.addAttribute("teacherInfo",teachers);
+        List<subjects> subjectsList= subjectService.findAll();
+        model.addAttribute("subjectList",subjectsList);
+        return "edit-teacher";
+    }
+
+    @RequestMapping("/delete-teacher")
+    public String deleteTeacher(@RequestParam int id){
+        teacherService.deleteTeacherById(id);
         return "redirect:/teacher";
     }
 }
