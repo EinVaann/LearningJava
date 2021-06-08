@@ -62,7 +62,7 @@
                             <td th:text="${teacher.subjectID}"></td>
                             <td th:text="${teacher.phone}"></td>
                             <td th:text="${teacher.email}"></td>
-                            <td><span><a href="edit-teacher">Edit</a> | </span><span><a href="delete-teacher">Delete</a> | </span> </td>
+                            <td><a href="edit-teacher">Edit</a>  <a href="delete-teacher">Delete</a> </td>
 
                         </ul>
                     </tr>
@@ -89,7 +89,7 @@
 
             param =  urlParam.get('sort')!=null?urlParam.get('sort'):'id';
             div = document.getElementById(param);
-            div.checked = true;
+            div.checked=true;
         }
     </script>
 </body>

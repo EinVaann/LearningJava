@@ -49,7 +49,7 @@ public class teachers {
     }
 
     public void setEmail(String email) {
-        email = email;
+        this.email = email;
     }
 
     public Integer getSubjectID() {

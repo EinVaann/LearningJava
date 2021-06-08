@@ -25,7 +25,7 @@ public class teacherController {
     public String getTeacherList(Model model, @RequestParam(name="subject",required = false) String subjectName,
                                  @RequestParam(name="sort",required = false) String sort){
         List<teachers> teacherList = new ArrayList<>();
-        System.out.println(subjectName);
+        //System.out.println(subjectName);
         if(subjectName!=null && subjectName.compareTo("all-subject")!=0) {
             try {
                 Integer subjectID = subjectService.getClassIdByName(subjectName);
@@ -36,20 +36,17 @@ public class teacherController {
         }else teacherList = teacherService.findAll();
 
         if(sort!=null){
-            if(sort.compareTo("Id")==0){
-                teacherList.sort(new Comparator<teachers>(){
-                    @Override
-                    public int compare(teachers t1, teachers t2){
-                        if (t1.getID()>t2.getID()) return 1;
-                        return -1;
-                    }
+            System.out.println(sort.compareTo("id"));
+            if(sort.compareTo("id")==0){
+                System.out.println("run id");
+                teacherList.sort((t1, t2) -> {
+                    if (t1.getID()>t2.getID()) return 1;
+                    return -1;
                 });
             }
-            if(sort.compareTo("Name")==0){
-                teacherList.sort((t1,t2)   ->{
-                        return t1.getName().compareTo(t2.getName());
-                    }
-                );
+            if(sort.compareTo("name")==0){
+                System.out.println("run name");
+                teacherList.sort((t1, t2) -> t1.getName().compareTo(t2.getName()));
             }
         }
         //System.out.println(teacherList.size());
@@ -68,6 +65,7 @@ public class teacherController {
     @PostMapping("/add-teacher")
     public String addTeacher(@ModelAttribute("teachers") teachers teacherInfo){
         teacherService.save(teacherInfo);
+        System.out.println(teacherInfo.getEmail());
         return "redirect:/teacher";
     }
 }
