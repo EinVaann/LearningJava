@@ -65,6 +65,7 @@ public class teacherController {
     @PostMapping("/add-teacher")
     public String addTeacher(@ModelAttribute("teachers") teachers teacherInfo){
         teacherService.save(teacherInfo);
+
         //System.out.println(teacherInfo.getEmail());
         return "redirect:/teacher";
     }
