@@ -13,7 +13,7 @@ public class students {
 
     private String name;
 
-    private String classId;
+    private Integer classId;
 
     private String phoneNumber;
 
@@ -35,11 +35,11 @@ public class students {
         this.name = name;
     }
 
-    public String getClassId() {
+    public Integer getClassId() {
         return classId;
     }
 
-    public void setClassId(String classId) {
+    public void setClassId(Integer classId) {
         this.classId = classId;
     }
 

@@ -38,14 +38,12 @@ public class teacherController {
         if(sort!=null){
             System.out.println(sort.compareTo("id"));
             if(sort.compareTo("id")==0){
-                System.out.println("run id");
                 teacherList.sort((t1, t2) -> {
                     if (t1.getID()>t2.getID()) return 1;
                     return -1;
                 });
             }
             if(sort.compareTo("name")==0){
-                System.out.println("run name");
                 teacherList.sort((t1, t2) -> t1.getName().compareTo(t2.getName()));
             }
         }
