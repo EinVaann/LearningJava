@@ -4,24 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b20c297-2908-4184-a242-47ae1a9d71d9" name="Default Changelist" comment="Xong phần class, bị lỗi nhỏ mấy k ra nên hơi lâu">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/css/Student.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/add-student.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/edit-student.html" afterDir="false" />
+    <list default="true" id="2b20c297-2908-4184-a242-47ae1a9d71d9" name="Default Changelist" comment="xong Search student đơn giản">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/pbl3/controller/studentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/pbl3/controller/studentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/pbl3/controller/teacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/pbl3/controller/teacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/pbl3/model/students.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/pbl3/model/students.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/pbl3/repositories/ClassRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/pbl3/repositories/ClassRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/pbl3/repositories/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/pbl3/repositories/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/pbl3/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/pbl3/service/StudentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/class.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/css/Student.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/css/Student.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/studentList.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/studentList.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/pbl3/controller/studentController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/pbl3/controller/studentController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/pbl3/controller/teacherController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/pbl3/controller/teacherController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/pbl3/model/students.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/pbl3/model/students.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/project/pbl3/service/StudentService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/pbl3/service/StudentService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/class.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/class.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/project/pbl3/repositories/StudentRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/project/pbl3/repositories/StudentRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/templates/studentList.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/studentList.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -89,17 +76,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Pbl3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.pbl3.Pbl3Application" />
@@ -123,7 +99,9 @@
       <workItem from="1623246845124" duration="4995000" />
       <workItem from="1623286746607" duration="22150000" />
       <workItem from="1623321850962" duration="632000" />
-      <workItem from="1623331182161" duration="7139000" />
+      <workItem from="1623331182161" duration="7257000" />
+      <workItem from="1623379020589" duration="7182000" />
+      <workItem from="1623386488286" duration="1545000" />
     </task>
     <task id="LOCAL-00001" summary="Xong phần class, bị lỗi nhỏ mấy k ra nên hơi lâu">
       <created>1623237983134</created>
@@ -132,7 +110,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623237983134</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="xong Search student đơn giản">
+      <created>1623340079212</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1623340079212</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,6 +137,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Xong phần class, bị lỗi nhỏ mấy k ra nên hơi lâu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Xong phần class, bị lỗi nhỏ mấy k ra nên hơi lâu" />
+    <MESSAGE value="xong Search đơn giản" />
+    <MESSAGE value="xong Search student đơn giản" />
+    <option name="LAST_COMMIT_MESSAGE" value="xong Search student đơn giản" />
   </component>
 </project>

@@ -67,7 +67,7 @@
 }
 
 .add-button{
-    background-color: #1f8fc3;
+    background-color: #0291d0;
     border: none;
     color: white;
     padding: 5px 30px;
@@ -76,6 +76,16 @@
     display: inline-block;
     font-size: 12px;
 }
+.search-button{
+    background-color: #039696;
+    border: none;
+    color: white;
+    padding: 5px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+ }
 
 .main-content {
     margin-left: 270px;

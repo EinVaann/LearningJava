@@ -8,15 +8,16 @@
     <script src="https://kit.fontawesome.com/99958fa2ed.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/Student.css">
     <title>Học sinh</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container"  id="container">
     <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Danh <span class="text-primary">Sách </span>Học Sinh</h1>
     <form th:action="@{/class/{grade}}" method="get">
-        <input id="txtSearch" type ="text" name="keyword">
-        <button type="submit">Search</button>
+    <input id="txtSearch" type ="text" name="keyword">
+       <button type="submit" class="search-button">Search</button>
     </form>
-    <table class="table table-striped mt-5">
+    <table id ="studentTable"class="table table-striped mt-5">
         <thead>
         <tr>
             <th><input type="radio" name="Subjects" class="radio-button" id="id" onclick="addUrlParameter('sort','id');">
@@ -56,6 +57,47 @@
                 div = document.getElementById(param);
                 div.checked = true;
             }
+        </script>
+        <script th:inline="javascript">
+            /*<![CDATA[*/
+            var studentList = /*[[${studentList}]]*/ ;
+            /*]]>*/
+            $('#txtSearch').on('keyup',function (){
+             var value= $(this).val();
+             var data = FilterFunction(value,studentList);
+             rebuildTable(data);
+            });
+            function  FilterFunction(value, data)
+            {
+                var filteredData =[];
+                for(var i = 0; i<data.length; i++)
+                {
+                    value = value.toLowerCase();
+                    var name = data[i].name.toLowerCase();
+                    if(name.includes(value))
+                    {
+                        filteredData.push(data[i]);
+                    }
+                }
+                return filteredData;
+            }
+            function rebuildTable(data){
+                var table = document.getElementById('studentTable');
+                table.innerHTML='';
+                for(var i=0;i<data.length;i++)
+                {
+                    var row =`<tr>
+                                <td>${data[i].id}</td>
+                                <td>${data[i].name}</td>
+                                <td>${data[i].classId}</td>
+                                <td>${data[i].phoneNumber}<td>
+                                <td>${data[i].email}</td>
+                                </tr>`
+                    table.innerHTML +=row
+                }
+            }
+
+
         </script>
         </tbody>
     </table>
