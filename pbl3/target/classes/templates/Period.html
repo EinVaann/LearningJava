@@ -7,169 +7,86 @@
     <link rel="stylesheet" href="/css/Period.css">
 
     <title>Số Tiết</title>
-    <script src = '/js/Period.js'> </script>
+    <script src='/js/Period.js'></script>
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Số Tiết</h1>
-        </header>
+<div class="container">
+    <header class="header">
+        <h1>Số Tiết</h1>
+    </header>
 
 
-        <div class="main-content">
-            <table border="3" class="table">
+    <div class="main-content">
+        <table border="3" class="table">
+            <tr>
+                <td></td>
+                <th>10</th>
+                <th>11</th>
+                <th>12</th>
+            </tr>
+            <ul th:each="index: ${#numbers.sequence(0,periodList.size()-1,3)}">
                 <tr>
-                    <th>Lớp <br><br> Môn Học</th>
-                    <th>10a1</th>
-                    <th>10a2</th>
-                    <th>10a3</th>
-                    <th>11a1</th>
-                    <th>11a2</th>
-                    <th>11a3</th>
-                    <th>12a1</th>
-                    <th>12a2</th>
-                    <th>12a3</th>
-                </tr>
-
-                <tr>
-
-                    <th>Ngữ Văn</th>
-                    <td contenteditable="true" th:text ="${periods.get(0).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(1).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(2).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(3).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(4).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(5).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(6).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(7).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(8).period}"></td>
-                </tr>
-
-                <tr>
-                    <th>Toán Học</th>
-                    <td contenteditable="true" th:text ="${periods.get(9).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(10).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(11).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(12).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(13).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(14).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(15).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(16).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(17).period}"></td>
-                </tr>
-
-                <tr>
-                    <th>Vật Lý</th>
-                    <td contenteditable="true" th:text ="${periods.get(18).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(19).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(20).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(21).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(22).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(23).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(24).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(25).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(26).period}"></td>
-                </tr>
-
-                <tr>
-                    <th>Hóa Học</th>
-                    <td contenteditable="true" th:text ="${periods.get(27).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(28).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(29).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(30).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(31).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(32).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(33).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(34).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(35).period}"></td>
-                </tr>
-
-                <tr>
-                    <th>Sinh Học</th>
-                    <td contenteditable="true" th:text ="${periods.get(36).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(37).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(38).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(39).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(40).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(41).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(42).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(43).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(44).period}"></td>
-                </tr>
-
-                <tr>
-                    <th>Lịch Sử</th>
-                    <td contenteditable="true" th:text ="${periods.get(45).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(46).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(47).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(48).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(49).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(50).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(51).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(52).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(53).period}"></td>
+                    <th th:text="${subjectList[index/3].getName()}"></th>
+                    <td class="data" th:id="${index}" th:text="${periodList[index].getPeriod()}"
+                        th:value="${periodList[index].getPeriod()}"></td>
+                    <td class="data" th:id="${index+1}" th:text="${periodList[index+1].getPeriod()}"
+                        th:value="${periodList[index+1].getPeriod()}"></td>
+                    <td class="data" th:id="${index+2}" th:text="${periodList[index+2].getPeriod()}"
+                        th:value="${periodList[index+2].getPeriod()}"></td>
 
                 </tr>
+            </ul>
+        </table>
+        <div>
+            <form class="period_input" th:object="${periods}" th:action="@{/edit-period}" method="post">
+                <input type="text" id="id" name="ID" hidden>
+                <input type="text" id="subjectID" name="subjectID" hidden>
+                <input type="text" id="grade" name="grade" hidden>
+                <div>
+                    <input type="button" onclick="edit('dec')" text="-"></input>
+                    <label for="period">Số tiết</label>
+                    <input id="period" name="period" readonly>
+                    <input type="button" onclick="edit('inc')" text="+"></button>
+                </div>
+                <input type="submit">
 
-                <tr>
-                    <th>Địa Lý</th>
-                    <td contenteditable="true" th:text ="${periods.get(54).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(55).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(56).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(57).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(58).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(59).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(60).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(61).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(62).period}"></td>
-                </tr>
-                <tr>
-                    <th>Giáo Dục Công Dân</th>
-                    <td contenteditable="true" th:text ="${periods.get(63).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(64).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(65).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(66).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(67).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(68).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(69).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(70).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(71).period}"></td>
-                </tr>
-
-
-
-                <tr>
-                    <th>Công Nghệ</th>
-                    <td contenteditable="true" th:text ="${periods.get(72).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(73).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(74).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(75).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(76).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(77).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(78).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(79).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(80).period}"></td>
-                </tr>
-
-                <tr>
-                    <th>Ngoại Ngữ</th>
-                    <td contenteditable="true" th:text ="${periods.get(81).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(82).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(83).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(84).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(85).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(86).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(87).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(88).period}"></td>
-                    <td contenteditable="true" th:text ="${periods.get(89).period}"></td>
-                </tr>
-            </table>
-
+            </form>
         </div>
-        <form action="/save/">
-            <input onclick="save()" type="submit" value="Save" class="button">
-        </form>
     </div>
 
+</div>
+
+
 </body>
+<script>
+    const id = document.getElementById('id');
+    const period = document.getElementById('period');
+    const subj = document.getElementById('subjectID');
+    const grade = document.getElementById('grade');
+
+
+    const data = document.getElementsByClassName('data');
+    for (let i = 0; i < data.length; i++) {
+        data[i].addEventListener('click', function () {
+            let a = document.getElementsByClassName('active');
+            if (a.length !== 0) a[0].classList.remove('active');
+            data[i].classList.add('active');
+
+            id.setAttribute('value',data[i].id);
+            period.setAttribute('value',data[i].getAttribute('value'));
+        })
+    }
+
+    function edit(i){
+        let nValue = parseInt(period.getAttribute('value'),10)
+        if(nValue!==null) {
+            if (i === 'dec' && nValue!==0) {
+                period.setAttribute('value', (nValue - 1).toString(10));
+            }
+            if (i === 'inc' && nValue!==5) {
+                period.setAttribute('value', (nValue + 1).toString(10));
+            }
+        }else alert("Hãy chọn 1 ô để edit");
+    }
+</script>
 </html>

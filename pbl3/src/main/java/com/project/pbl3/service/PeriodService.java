@@ -16,6 +16,13 @@ public class PeriodService {
         List<periods> periods = periodRepository.findAll();
         return periods;
     }
+    public periods findByID(Integer ID) throws Exception{
+        List<periods> periodsList = periodRepository.findAll();
+        for(periods p:periodsList){
+            if(p.getID()==ID) return p;
+        }
+        throw new Exception("KHONG TIM THAY");
+    }
 
     public periods save(periods period) {
         return periodRepository.save(period);
