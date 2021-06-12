@@ -15,7 +15,7 @@ public class classController {
     @Autowired
     private ClassService classService;
 
-    @GetMapping("/ClassList")
+    @GetMapping("/class-list")
     public String getClassList(Model model, @RequestParam(name="Grade",required = false) String Grade){
         List<classes> classList = new ArrayList<>();
         if(Grade!=null && Grade.compareTo("all-Grade")!=0) {
@@ -42,14 +42,13 @@ public class classController {
     @PostMapping("/add-class")
     public String addClass(@ModelAttribute("classes") classes info)
     {
-
         classService.save(info);
-        return "redirect:/ClassList";
+        return "redirect:/class-list";
     }
     @PostMapping("/edit-class")
     public String editClass(@ModelAttribute("classes") classes classes){
         classService.save(classes);
-        return "redirect:/ClassList";
+        return "redirect:/class-list";
     }
 
     @GetMapping("/edit-class")
@@ -62,6 +61,6 @@ public class classController {
     @RequestMapping("/delete-class")
     public String deleteTeacher(@RequestParam int id){
         classService.deleteByID(id);
-        return "redirect:/ClassList";
+        return "redirect:/class-list";
     }
 }

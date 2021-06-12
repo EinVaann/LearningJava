@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -19,27 +20,24 @@ public class StudentService{
 
     @Autowired
     private StudentRepository studentRepository;
+
     @Autowired
     private ClassService classService;
+
+
     public List<students> findByGrade(String grade) {
         List<students> studentsList = studentRepository.findAll();
+        if(grade.compareTo("all")==0) return studentsList;
         List<students> queryStudent = new ArrayList<>();
-        List<classes> classList = classService.getClassByGrade(grade);
-        for (classes class1:classList) {
             for (students students : studentsList) {
-                if (students.getClassId()==class1.getID()) {
+                if (classService.getClassByID(students.getClassId()).getName().contains(grade)) {
                     queryStudent.add(students);
                 }
             }
-        }
 
-        System.out.println(queryStudent.size());
+        //System.out.println(queryStudent.size());
         return queryStudent;
     }
-//    public List<students> findByKeyword (String keyword)
-//    {
-//
-//    }
     public void save(students students){
     studentRepository.save(students);
 }
@@ -48,5 +46,38 @@ public class StudentService{
     public List<students> findByKeyWord(String keyword)
     {
         return studentRepository.findByKeyword(keyword);
+    }
+
+    public List<students> findAll() {return studentRepository.findAll(); }
+
+    public List<students> findRequire(String grade,String sort,String keyword){
+        List<students> studentsList = new ArrayList<>();
+        List<students> queryList = new ArrayList<>();
+        if(grade!=null) studentsList = findByGrade(grade);
+        else studentsList = findAll();
+        if(keyword!=null){
+            for(students s:studentsList){
+                if(s.getName().contains(keyword)){
+                    queryList.add(s);
+                }
+            }
+        }else queryList=studentsList;
+        sort(sort,queryList);
+        return queryList;
+    }
+
+    public List<students> sort(String sort,List<students> studentsList){
+        if(sort!=null){
+            System.out.println(sort.compareTo("id"));
+            if(sort.compareTo("id")==0){
+                studentsList.sort((t1, t2) -> {
+                    if (t1.getID()>t2.getID()) return 1;
+                    return -1;
+                });
+            }
+            if(sort.compareTo("name")==0)
+                studentsList.sort(Comparator.comparing(students::getName));
+            }
+        return studentsList;
     }
 }

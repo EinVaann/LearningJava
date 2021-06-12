@@ -25,64 +25,49 @@ public class studentController {
     @Autowired
     private ClassService classService;
 
-    @GetMapping("/class/{grade}")
-    private String getStudentList(Model model, @PathVariable String grade,@RequestParam(name="sort",required = false) String sort, String keyword){
-        if(keyword!=null)
-        {
-            model.addAttribute("studentList",studentService.findByKeyWord(keyword));
-        }
-        else {
-            List<students> studentList = studentService.findByGrade(grade);
-            if (sort != null) {
-                System.out.println(sort.compareTo("id"));
-                if (sort.compareTo("id") == 0) {
-                    studentList.sort((t1, t2) -> {
-                        if (t1.getID() > t2.getID()) return 1;
-                        return -1;
-                    });
-                }
-                if (sort.compareTo("name") == 0) {
-                    studentList.sort((t1, t2) -> t1.getName().compareTo(t2.getName()));
-                }
-            }
-            model.addAttribute("studentList", studentList);
-        }
-        model.addAttribute("grade", grade);
+    @GetMapping("/student")
+    private String getStudentList(Model model,@RequestParam(name="grade",required = false)String grade,
+                                  @RequestParam(name="sort",required = false) String sort,
+                                  @RequestParam(name="keyword",required = false)String keyword) {
+        List<students> studentList = studentService.findRequire(grade,sort,keyword);
+        model.addAttribute("studentList", studentList);
+       // model.addAttribute("grade", grade);
         return "studentList";
     }
-    @GetMapping("/class/add-student")
-    public String addStudent(Model model)
-    {
+
+    @GetMapping("add-student")
+    public String addStudent(Model model) {
         List<classes> classesList = classService.findAll();
         model.addAttribute("classesList", classesList);
         return "add-student";
     }
 
-    @PostMapping("/class/add-student")
-    public String addStudent(@ModelAttribute("students")students studentInfo){
+    @PostMapping("add-student")
+    public String addStudent(@ModelAttribute("students") students studentInfo) {
         studentService.save(studentInfo);
-        //System.out.println(teacherInfo.getEmail());
-        return "redirect:/class";
+        return "redirect:/student";
     }
-    @GetMapping("/class/edit-student")
-    public String editStudent(Model model,@RequestParam int id){
+
+    @GetMapping("edit-student")
+    public String editStudent(Model model, @RequestParam int id) {
         students students = studentService.getStudentByID(id);
-        model.addAttribute("studentInfo",students);
+        model.addAttribute("studentInfo", students);
         List<classes> classesList = classService.findAll();
-        model.addAttribute("classesList",classesList);
+        model.addAttribute("classesList", classesList);
         return "edit-student";
     }
-    @PostMapping("/class/edit-student")
-    public String editStudent(@ModelAttribute("students") students studentInfo){
+
+    @PostMapping("edit-student")
+    public String editStudent(@ModelAttribute("students") students studentInfo) {
         studentService.save(studentInfo);
-        return "redirect:/class";
+        return "redirect:/student";
     }
 
 
-    @RequestMapping("/class/delete-student")
-    public String deleteTeacher(@RequestParam int id){
+    @RequestMapping("delete-student")
+    public String deleteTeacher(@RequestParam int id) {
         studentService.deleteStudentByID(id);
-        return "redirect:/class";
+        return "redirect:/student";
     }
 
 }

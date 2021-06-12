@@ -11,11 +11,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-<div class="container"  id="container">
+<div class="sidebar">
+    <div class="sidebar-brand">
+        <h2><span>Môn Học</span></h2>
+    </div>
+
+    <div class="sidebar-menu">
+        <div class="all-grade" onclick="addUrlParameter('grade','all')">Tất Cả Khối</div>
+        <div class="10" onclick="addUrlParameter('grade','10')">Khối 10</div>
+        <div class="11" onclick="addUrlParameter('grade','11')">Khối 11</div>
+        <div class="12" onclick="addUrlParameter('grade','12')">Khối 12</div>
+    </div>
+</div>
+<div class="main-content"  id="container">
+    <header>
+        <h2>
+            <label>
+                <i class="fas fa-bars"></i> <a href="/home">Trang chủ</a>
+            </label>
+        </h2>
+    </header>
     <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Danh <span class="text-primary">Sách </span>Học Sinh</h1>
-    <form th:action="@{/class/{grade}}" method="get">
+    <form th:action="@{/student}">
     <input id="txtSearch" type ="text" name="keyword">
-       <button type="submit" class="search-button">Search</button>
+       <input type="submit" value="Search">
     </form>
     <table id ="studentTable"class="table table-striped mt-5">
         <thead>
@@ -37,8 +56,8 @@
             <td th:text ="${student.classId}"></td>
             <td th:text ="${student.phoneNumber}"></td>
             <td th:text ="${student.email}"></td>
-            <td><span><a th:href="@{'/class/edit-student?id='+${student.getID()}}">Edit</a> | </span>
-                <span><a th:href="@{'/class/delete-student?id='+${student.getID()}}">Delete</a> | </span> </td>
+            <td><span><a th:href="@{'/edit-student?id='+${student.getID()}}">Edit</a> | </span>
+                <span><a th:href="@{'/delete-student?id='+${student.getID()}}">Delete</a> | </span> </td>
         </tr>
         <script>
             function addUrlParameter(name, value) {
@@ -46,58 +65,24 @@
                 searchParams.set(name, value)
                 window.location.search = searchParams.toString()
             }
-
+            function search(){
+                const s = document.getElementById('txtSearch');
+                addUrlParameter('search',);
+            }
             const queryString = window.location.search;
             console.log(queryString)
             const urlParam = new URLSearchParams(queryString)
 
             window.onload = function (){
+                let param = urlParam.get('grade')!=null?urlParam.get('grade'):'all';
+                let div = document.getElementsByClassName(param);
+                div[0].classList.add("active");
 
                 param =  urlParam.get('sort')!=null?urlParam.get('sort'):'id';
+                alert(param);
                 div = document.getElementById(param);
                 div.checked = true;
             }
-        </script>
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-            var studentList = /*[[${studentList}]]*/ ;
-            /*]]>*/
-            $('#txtSearch').on('keyup',function (){
-             var value= $(this).val();
-             var data = FilterFunction(value,studentList);
-             rebuildTable(data);
-            });
-            function  FilterFunction(value, data)
-            {
-                var filteredData =[];
-                for(var i = 0; i<data.length; i++)
-                {
-                    value = value.toLowerCase();
-                    var name = data[i].name.toLowerCase();
-                    if(name.includes(value))
-                    {
-                        filteredData.push(data[i]);
-                    }
-                }
-                return filteredData;
-            }
-            function rebuildTable(data){
-                var table = document.getElementById('studentTable');
-                table.innerHTML='';
-                for(var i=0;i<data.length;i++)
-                {
-                    var row =`<tr>
-                                <td>${data[i].id}</td>
-                                <td>${data[i].name}</td>
-                                <td>${data[i].classId}</td>
-                                <td>${data[i].phoneNumber}<td>
-                                <td>${data[i].email}</td>
-                                </tr>`
-                    table.innerHTML +=row
-                }
-            }
-
-
         </script>
         </tbody>
     </table>

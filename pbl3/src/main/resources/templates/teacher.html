@@ -33,9 +33,9 @@
         <header>
             <h2>
                 <label>
-                    <i class="fas fa-bars"></i> <span>Giáo Viên Bộ Môn</span>  
+                    <i class="fas fa-bars"></i> <a href="/home">Trang chủ</a>
                 </label>
-            </h2>            
+            </h2>
         </header>
 
         <main>
@@ -51,7 +51,7 @@
                             <th>ID Môn Học</th>
                             <th>SĐT</th>
                             <th>Email</th>
-                            <th ><a href="add-teacher" class="add-button ">Add</a></th>
+                            <th ><a th:href="@{'add-teacher'}" class="add-button ">Add</a></th>
                         </tr>
                     </thead>
                     <tbody id="teacher-list">

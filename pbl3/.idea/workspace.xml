@@ -70,6 +70,17 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Pbl3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.pbl3.Pbl3Application" />
@@ -96,7 +107,9 @@
       <workItem from="1623331182161" duration="7257000" />
       <workItem from="1623379020589" duration="7182000" />
       <workItem from="1623386488286" duration="1545000" />
-      <workItem from="1623487777333" duration="250000" />
+      <workItem from="1623487777333" duration="1835000" />
+      <workItem from="1623489642609" duration="997000" />
+      <workItem from="1623500193290" duration="4709000" />
     </task>
     <task id="LOCAL-00001" summary="Xong phần class, bị lỗi nhỏ mấy k ra nên hơi lâu">
       <created>1623237983134</created>
