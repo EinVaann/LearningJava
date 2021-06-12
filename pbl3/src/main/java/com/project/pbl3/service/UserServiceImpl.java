@@ -18,15 +18,10 @@ public class UserServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Iterable<users> usersIterable = userRepository.findAll();
         for(users u: usersIterable){
-            //System.out.print(s+u.getUsername());
-            //System.out.println(u.getUsername().compareTo(s));
             if(u.getUsername().compareTo(s)==0){
-
-                //System.out.print("FOUND");
                 return new MyUserDetail(u);
             }
         }
-        //System.out.print("NOT FOUND");
         throw new UsernameNotFoundException("Could not find User");
     }
 }

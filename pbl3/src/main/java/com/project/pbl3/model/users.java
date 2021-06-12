@@ -16,14 +16,10 @@ public class users {
     private String username;
     private String password;
     private Boolean Enable;
+    private Integer teacherId;
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_role",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id")
-    )
-    private Set<roles> roles = new HashSet<>();
+    @OneToMany(mappedBy = "users")
+    Set<users_roles> users_roles;
 
     public Integer getId() {
         return id;
@@ -37,12 +33,12 @@ public class users {
         return username;
     }
 
-    public Set<com.project.pbl3.model.roles> getRoles() {
-        return roles;
+    public Set<com.project.pbl3.model.users_roles> getUsers_roles() {
+        return users_roles;
     }
 
-    public void setRoles(Set<com.project.pbl3.model.roles> roles) {
-        this.roles = roles;
+    public void setUsers_roles(Set<com.project.pbl3.model.users_roles> users_roles) {
+        this.users_roles = users_roles;
     }
 
     public void setUsername(String username) {
@@ -63,5 +59,13 @@ public class users {
 
     public void setEnable(Boolean enable) {
         Enable = enable;
+    }
+
+    public Integer getTeacherId() {
+        return teacherId;
+    }
+
+    public void setTeacherId(Integer teacherId) {
+        this.teacherId = teacherId;
     }
 }

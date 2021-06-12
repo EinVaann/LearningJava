@@ -19,9 +19,8 @@ public class ClassService {
     {
         return classRepository.findAll();
     }
-    public void save(classes class1)
-    {
-        classRepository.save(class1);
+    public void save(classes info){
+        classRepository.save(info);
     }
     public classes getClassByID(Integer id)
     {

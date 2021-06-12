@@ -2,6 +2,7 @@ package com.project.pbl3.model;
 
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -27,4 +28,7 @@ public class roles {
     public void setName(String name) {
         this.name = name;
     }
+
+    @OneToMany(mappedBy = "roles")
+    Set<users_roles> users_roles;
 }

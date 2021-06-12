@@ -16,10 +16,10 @@
     </div>
 
     <div class="sidebar-menu">
-        <div class="all-Grade" onclick="addUrlParameter('Grade','all-Grade')">Tất Cả Các Khối</div>
-        <div class="10" onclick="addUrlParameter('Grade','10')">Khối 10</div>
-        <div class="11" onclick="addUrlParameter('Grade','11')">Khối 11</div>
-        <div class="12" onclick="addUrlParameter('Grade','12')">Khối 12</div>
+        <div class="all-grade" onclick="addUrlParameter('grade','all-grade')">Tất Cả Các Khối</div>
+        <div class="10" onclick="addUrlParameter('grade','10')">Khối 10</div>
+        <div class="11" onclick="addUrlParameter('grade','11')">Khối 11</div>
+        <div class="12" onclick="addUrlParameter('grade','12')">Khối 12</div>
     </div>
 </div>
 
@@ -27,7 +27,7 @@
     <header>
         <h2>
             <label>
-                <i class="fas fa-bars"></i> <span>Danh Sách Lớp</span>
+                <i class="fas fa-bars"></i> <a href="/">Trang chủ</a>
             </label>
         </h2>
     </header>
@@ -38,29 +38,17 @@
             <table class="table table-striped mt-5" >
                 <thead>
                 <tr>
-                    <th><!--<input type="radio" name="Grade" class="radio-button" id="id" onclick="addUrlParameter('sort','id');">
-                        <label class="triangle" for="id"></label>-->ID</th>
-                    <th></th><th></th><th></th>
-                    <th><!--<input type="radio" name="Grade" class="radio-button" id="name" onclick="addUrlParameter('sort','name');">
-                        <label class="triangle" for="name"></label>-->Tên Lớp</th>
-                    <th></th><th></th><th></th><th></th>
-
-
-
+                    <th>ID</th>
+                    <th>Tên Lớp</th>
                     <th ><a href="add-class" class="add-button ">Add</a></th>
                 </tr>
                 </thead>
                 <tbody id="class-list">
                 <tr th:each="class : ${classList}">
-                    <ul >
                         <td th:text="${class.ID}"></td>
-                        <td></td><td></td><td></td>
-                        <td th:text="${class.name}"></td>
-                        <td></td><td></td><td></td><td></td>
+                        <td style='width:80%;' th:text="${class.name}"></td>
                         <td><span><a th:href="@{'edit-class?id='+${class.getID()}}">Edit</a> | </span>
                             <span><a th:href="@{'delete-class?id='+${class.getID()}}">Delete</a> | </span> </td>
-
-                    </ul>
                 </tr>
                 </tbody>
             </table>
@@ -79,7 +67,7 @@
     const urlParam = new URLSearchParams(queryString)
 
     window.onload = function (){
-        let param = urlParam.get('Grade')!=null?urlParam.get('Grade'):'all-subject';
+        let param = urlParam.get('grade')!=null?urlParam.get('grade'):'all-grade';
         let div = document.getElementsByClassName(param);
         div[0].classList.add("active");
 

@@ -16,20 +16,15 @@ public class classController {
     private ClassService classService;
 
     @GetMapping("/class-list")
-    public String getClassList(Model model, @RequestParam(name="Grade",required = false) String Grade){
+    public String getClassList(Model model, @RequestParam(name="grade",required = false) String Grade){
         List<classes> classList = new ArrayList<>();
-        if(Grade!=null && Grade.compareTo("all-Grade")!=0) {
+        if(Grade!=null && Grade.compareTo("all-grade")!=0) {
             try {
                 classList = classService.getClassByGrade(Grade);
             }catch (Exception e) {
                 e.printStackTrace();
             }
         }else classList = classService.findAll();
-
-
-
-        //System.out.println(classList.size());
-
         model.addAttribute("classList",classList);
         return "classList";
     }
@@ -42,11 +37,13 @@ public class classController {
     @PostMapping("/add-class")
     public String addClass(@ModelAttribute("classes") classes info)
     {
+        System.out.println(info.getID()+""+info.getName());
         classService.save(info);
         return "redirect:/class-list";
     }
     @PostMapping("/edit-class")
     public String editClass(@ModelAttribute("classes") classes classes){
+        System.out.println(classes.getID()+""+classes.getName());
         classService.save(classes);
         return "redirect:/class-list";
     }
@@ -60,7 +57,7 @@ public class classController {
 
     @RequestMapping("/delete-class")
     public String deleteTeacher(@RequestParam int id){
-        classService.deleteByID(id);
+       classService.deleteByID(id);
         return "redirect:/class-list";
     }
 }
