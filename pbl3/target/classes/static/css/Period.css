@@ -47,3 +47,7 @@ td {
     padding: 8px;
     text-align: center;
 }
+
+.active{
+    background-color: #6ab04c;
+}

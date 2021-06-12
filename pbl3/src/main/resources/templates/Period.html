@@ -79,7 +79,7 @@
 
     function edit(i){
         let nValue = parseInt(period.getAttribute('value'),10)
-        if(nValue!==null) {
+        if(!isNaN(nValue)) {
             if (i === 'dec' && nValue!==0) {
                 period.setAttribute('value', (nValue - 1).toString(10));
             }
