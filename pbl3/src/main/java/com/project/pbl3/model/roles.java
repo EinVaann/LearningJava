@@ -29,6 +29,6 @@ public class roles {
         this.name = name;
     }
 
-    @OneToMany(mappedBy = "roles")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "roles")
     Set<users_roles> users_roles;
 }

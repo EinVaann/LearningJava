@@ -83,6 +83,7 @@ public class teacherController {
         return "edit-teacher";
     }
 
+
     @RequestMapping("/delete-teacher")
     public String deleteTeacher(@RequestParam int id){
         teacherService.deleteTeacherById(id);

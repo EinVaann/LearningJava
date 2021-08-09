@@ -168,6 +168,7 @@ button.ghost {
 /*  Move signIn to the right */
 .container.right-panel-active .sign-in-container {
     transform: translateX(100%);
+    opacity: 0;
 }
 
 /*  Move overlay to the left */
@@ -194,4 +195,8 @@ button.ghost {
 
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
+}
+
+.alert{
+    color: orangered;
 }
