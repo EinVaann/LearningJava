@@ -18,7 +18,7 @@ public class users {
     private Boolean Enable;
     private Integer teacherId;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL,mappedBy = "users")
+    @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "users")
     private Set<users_roles> users_roles;
 
     public Integer getId() {

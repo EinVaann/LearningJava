@@ -8,11 +8,11 @@ public class users_roles {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(cascade =CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     users users;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name ="role_id")
     roles roles;
 

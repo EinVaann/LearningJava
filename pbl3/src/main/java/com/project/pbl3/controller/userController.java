@@ -1,5 +1,6 @@
 package com.project.pbl3.controller;
 
+import com.project.pbl3.model.roles;
 import com.project.pbl3.model.teachers;
 import com.project.pbl3.model.users;
 import com.project.pbl3.model.users_roles;
@@ -8,11 +9,11 @@ import com.project.pbl3.repositories.UserRepository;
 import com.project.pbl3.repositories.UserRoleRepository;
 import com.project.pbl3.service.PasswordEncoder;
 import com.project.pbl3.service.TeacherService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -57,5 +58,22 @@ public class userController {
     @GetMapping("/register")
     public String register(){
         return "register";
+    }
+
+    @GetMapping("/users-list")
+    public String getUsersList(Model model){
+        List<users> usersList = userRepository.findAll();
+        model.addAttribute("usersList",usersList);
+        List<roles> rolesList = roleRepository.findAll();
+        model.addAttribute("rolesList",rolesList);
+        List<users_roles> usersRolesList = userRoleRepository.findAll();
+        model.addAttribute("userRoleList",usersRolesList);
+        return "users-list";
+    }
+
+    @RequestMapping("/delete-user")
+    public String deleteUser(@RequestParam int id){
+        userRepository.deleteById(id);
+        return "redirect:/users-list";
     }
 }
