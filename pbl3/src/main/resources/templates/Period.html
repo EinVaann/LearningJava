@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -38,13 +39,12 @@
             </ul>
         </table>
         <div>
-            <form class="period_input" th:object="${Period}" th:action="@{/edit-period}" method="post">
+            <form sec:authorize="hasAnyAuthority('ADMIN')" class="period_input" th:object="${Period}" th:action="@{/edit-period}" method="post">
                 <input type="text" id="id" name="ID" hidden>
                 <input type="text" id="subjectID" name="subjectID" hidden>
                 <input type="text" id="grade" name="grade" hidden>
                 <div>
                     <input type="button" onclick="edit('dec')" value="-"></input>
-                    <label for="period">Số tiết</label>
                     <input id="period" name="period" readonly>
                     <input type="button" onclick="edit('inc')" value="+"></button>
                 </div>

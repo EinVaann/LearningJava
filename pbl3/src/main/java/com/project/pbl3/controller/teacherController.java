@@ -47,7 +47,6 @@ public class teacherController {
                 teacherList.sort(Comparator.comparing(Teacher::getName));
             }
         }
-        System.out.println(teacherList.size());
         model.addAttribute("teacherList",teacherList);
         return "teacher";
     }

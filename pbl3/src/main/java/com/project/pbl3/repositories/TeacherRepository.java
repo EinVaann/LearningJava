@@ -13,4 +13,7 @@ public interface TeacherRepository extends JpaRepository<Teacher,Integer> {
 
     @Query("SELECT t FROM Teacher t where t.subjectID = :subjectID")
     List<Teacher> getTeacherBySubject(@Param("subjectID")Integer subjectID);
+
+    @Query("SELECT s from Teacher s where s.ID not in (select c.teacherId from User c)")
+    List<Teacher> findTeachersByNonUser();
 }

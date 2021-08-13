@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -40,14 +40,15 @@
                 <tr>
                     <th>ID</th>
                     <th>Tên Lớp</th>
-                    <th ><a href="add-class" class="add-button ">Add</a></th>
+                    <th sec:authorize="hasAnyAuthority('ADMIN','USER')"><a href="add-class" class="add-button ">Add</a></th>
                 </tr>
                 </thead>
                 <tbody id="class-list">
                 <tr th:each="class : ${classList}">
                         <td th:text="${class.ID}"></td>
                         <td style='width:80%;' th:text="${class.name}"></td>
-                        <td><span><a th:href="@{'edit-class?id='+${class.getID()}}">Edit</a> | </span>
+                        <td sec:authorize="hasAnyAuthority('ADMIN','USER')">
+                            <span><a th:href="@{'edit-class?id='+${class.getID()}}">Edit</a> | </span>
                             <span><a th:href="@{'delete-class?id='+${class.getID()}}">Delete</a> | </span> </td>
                 </tr>
                 </tbody>

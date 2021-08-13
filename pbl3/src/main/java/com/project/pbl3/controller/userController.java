@@ -1,9 +1,11 @@
 package com.project.pbl3.controller;
 
 import com.project.pbl3.model.Role;
+import com.project.pbl3.model.Teacher;
 import com.project.pbl3.model.User;
 import com.project.pbl3.model.User_Role;
 import com.project.pbl3.repositories.RoleRepository;
+import com.project.pbl3.repositories.TeacherRepository;
 import com.project.pbl3.repositories.UserRepository;
 import com.project.pbl3.repositories.UserRoleRepository;
 import com.project.pbl3.service.PasswordEncoder;
@@ -22,6 +24,8 @@ public class userController {
     private UserRoleRepository userRoleRepository;
     @Autowired
     private RoleRepository roleRepository;
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @PostMapping("/register")
     public String register(@ModelAttribute("users") User User){
@@ -63,5 +67,22 @@ public class userController {
     public String deleteUser(@RequestParam int id){
         userRepository.deleteById(id);
         return "redirect:/users-list";
+    }
+
+    @PostMapping("link-user")
+    public String editUser(@ModelAttribute("users") User userInfo){
+        userRepository.save(userInfo);
+        return "redirect:/user";
+    }
+    @GetMapping("/link-user")
+    public String linkUser (Model model,@RequestParam int id){
+        User users = userRepository.getOne(id);
+        model.addAttribute("userInfo",users);
+        List<Teacher> teachersList1 = teacherRepository.findTeachersByNonUser();
+        List<Role> rolesList = roleRepository.findAll();
+        model.addAttribute("teachersList1",teachersList1);
+        System.out.print(teachersList1.size());
+        model.addAttribute("rolesList",rolesList);
+        return "link-user";
     }
 }

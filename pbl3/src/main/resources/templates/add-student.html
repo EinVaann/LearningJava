@@ -21,7 +21,7 @@
         <div class="form-group">
             <label for="class">Lớp</label>
             <select   id="class" class="form-control" name="classId">
-                <option th:each="class1 : ${classList}" th:value="${class1.ID}" th:text="${class1.name}"/>
+                <option th:each="class1 : ${classesList}" th:value="${class1.getID()}" th:text="${class1.getName()}"/>
             </select>
         </div>
         <div class="form-group">

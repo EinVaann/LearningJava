@@ -21,5 +21,6 @@ public class MVCConfig implements WebMvcConfigurer {
         registry.addViewController("/users-list").setViewName("users");
         registry.addViewController("/access_denied").setViewName("access-denied");
         registry.addViewController("/success").setViewName("success");
+        registry.addViewController("/link-user").setViewName("link-user");
     }
 }

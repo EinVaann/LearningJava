@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://bootswatch.com/4/materia/bootstrap.css">
+    <script src="https://kit.fontawesome.com/99958fa2ed.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="Teacher.css">
+    <title>User</title>
+</head>
+<body>
+<div class="container mt-4">
+    <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Sửa <span class="text-primary"> </span>User</h1>
+    <form id="user-form" th:action="@{/edit-user}" th:object="${User}" method="post">
+        <div class="form-group">
+            <label for="id">ID</label>
+            <input type="text" id="id" class="form-control" name=id readonly="true" th:value="${userInfo.id}">
+        </div>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" class="form-control" name="username" readonly="true" th:value="${userInfo.username}">
+        </div>
+        <div class="form-group">
+            <!--<label for="password">Password</label>-->
+            <input type="text" id="password" class="form-control" name="password" hidden th:value="${userInfo.password}">
+        </div>
+        <div class="form-group">
+          <!--  <label for="roles"></label>
+            <select id="roles" class="form-control" name="name">
+                <option th:each="roles : ${rolesList}" th:value="${roles.getId()}" th:text="${roles.getName()}"/>
+            </select>-->
+        </div>
+        <div class="form-group">
+            <label for="teacher">ID Giáo viên</label>
+            <select id="teacher" class="form-control" name="teacherId">
+                <option th:each="teacher : ${teachersList1}" th:value="${teacher.getID()}"
+                        th:text="${teacher.getID()}+'  '+${teacher.getName()}"/>
+            </select>
+        </div>
+        <input type="submit" value="Edit" class="btn btn-block btn-primary">
+    </form>
+</div>
+</body>
+</html>

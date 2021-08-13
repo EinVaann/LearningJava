@@ -50,8 +50,10 @@
                             <div th:each="userRole : ${userRoleList}">
                             <td th:if="${userRole.getUsers().getId()==User.getId()}"
                                 th:text="${userRole.getRoles().getName()}"></td></div>
-                           <td><span th:if="${User.getTeacherId()==0}"><a th:href="@{'edit-teacher?id='+${User.getId()}}">Edit</a> | </span>
-                                <span><a th:href="@{'delete-user?id='+${User.getId()}}" >Delete</a> | </span> </td>
+                           <td th:if="${User.getId()!=1}">
+                               <span th:if="${User.getTeacherId()==0}"><a th:href="@{'link-user?id='+${User.getId()}}">Link</a> | </span>
+                               <span><a th:href="@{'delete-user?id='+${User.getId()}}" >Delete</a> | </span>
+                               <span><a th:href="@{'reset-password'}" >Reset</a> | </span></td>
                         </ul>
                     </tr>
                     </tbody>
