@@ -24,7 +24,7 @@ public class studentController {
     @Autowired
     private ClassRepository classRepository;
 
-    @GetMapping("/student")
+    @GetMapping("/student-list")
     private String getStudentList(Model model,@RequestParam(name="grade",required = false)String grade,
                                   @RequestParam(name="sort",required = false) String sort,
                                   @RequestParam(name="keyword",required = false)String keyword) {

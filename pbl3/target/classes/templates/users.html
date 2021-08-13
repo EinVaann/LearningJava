@@ -42,12 +42,12 @@
                         </tr>
                     </thead>
                     <tbody id="teacher-list">
-                    <tr th:each="User : ${userList}">
+                    <tr th:each="User : ${usersList}">
                         <ul >
                             <td th:text="${User.getId()}"></td>
                             <td th:text="${User.getUsername()}"></td>
                             <td th:text="${User.getTeacherId()}"></td>
-                            <div th:each="userRole:${userRoleList}">
+                            <div th:each="userRole : ${userRoleList}">
                             <td th:if="${userRole.getUsers().getId()==User.getId()}"
                                 th:text="${userRole.getRoles().getName()}"></td></div>
                            <td><span th:if="${User.getTeacherId()==0}"><a th:href="@{'edit-teacher?id='+${User.getId()}}">Edit</a> | </span>

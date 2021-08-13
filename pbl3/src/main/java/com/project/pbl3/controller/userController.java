@@ -42,7 +42,7 @@ public class userController {
         User_Role.setUsers(User);
         User_Role.setRoles(roleRepository.getOne(3));
         userRoleRepository.save(User_Role);
-        return "/register_success";
+        return "/success";
     }
 
     @GetMapping("/register")
@@ -54,8 +54,6 @@ public class userController {
     public String getUsersList(Model model){
         List<User> userList = userRepository.findAll();
         model.addAttribute("usersList", userList);
-        List<Role> roleList = roleRepository.findAll();
-        model.addAttribute("rolesList", roleList);
         List<User_Role> usersRolesList = userRoleRepository.findAll();
         model.addAttribute("userRoleList",usersRolesList);
         return "users";

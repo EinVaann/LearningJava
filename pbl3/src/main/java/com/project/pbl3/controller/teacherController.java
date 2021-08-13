@@ -21,7 +21,7 @@ public class teacherController {
     @Autowired
     private SubjectRepository subjectRepository;
 
-    @GetMapping("/teacher")
+    @GetMapping("/teacher-list")
     public String getTeacherList(Model model, @RequestParam(name="subject",required = false) String subjectName,
                                  @RequestParam(name="sort",required = false) String sort){
         List<Teacher> teacherList = new ArrayList<>();
@@ -47,7 +47,7 @@ public class teacherController {
                 teacherList.sort(Comparator.comparing(Teacher::getName));
             }
         }
-        //System.out.println(teacherList.size());
+        System.out.println(teacherList.size());
         model.addAttribute("teacherList",teacherList);
         return "teacher";
     }

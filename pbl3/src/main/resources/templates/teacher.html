@@ -57,11 +57,11 @@
                     <tbody id="teacher-list">
                     <tr th:each="teacher : ${teacherList}">
                         <ul >
-                            <td th:text="${teacher.ID}"></td>
-                            <td th:text="${teacher.name}"></td>
-                            <td th:text="${teacher.subjectID}"></td>
-                            <td th:text="${teacher.phone}"></td>
-                            <td th:text="${teacher.email}"></td>
+                            <td th:text="${teacher.getID()}"></td>
+                            <td th:text="${teacher.getName()}"></td>
+                            <td th:text="${teacher.getSubjectID()}"></td>
+                            <td th:text="${teacher.getPhone()}"></td>
+                            <td th:text="${teacher.getEmail()}"></td>
                             <td><span><a th:href="@{'edit-teacher?id='+${teacher.getID()}}">Edit</a> | </span>
                                 <span><a th:href="@{'delete-teacher?id='+${teacher.getID()}}">Delete</a> | </span> </td>
 
