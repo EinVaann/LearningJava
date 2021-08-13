@@ -18,10 +18,11 @@
 
         <div class="sidebar-menu">
             <div class="Home-page active">Trang Chủ</div>
-            <div class="side" onclick="changeURL('teacher')">Giáo Viên</div>
-            <div class="side"  onclick="changeURL('studentList')">Học sinh</div>
-            <div class="side" onclick="changeURL('classList')">Lớp Học</div>
+            <div class="side" onclick="changeURL('teacher-list')">Giáo Viên</div>
+            <div class="side"  onclick="changeURL('student-list')">Học sinh</div>
+            <div class="side" onclick="changeURL('class-list')">Lớp Học</div>
             <div class="side" onclick="changeURL('period')">Số Tiết</div>
+            <div class="side" onclick="changeURL('user-list')">Người dùng</div>
             <div class="not-side">
                 <span sec:authentication="name"></span>
                 <form th:action="@{/logout}" method="post">

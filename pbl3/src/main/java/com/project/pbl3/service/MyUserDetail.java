@@ -1,8 +1,8 @@
 package com.project.pbl3.service;
 
-import com.project.pbl3.model.roles;
-import com.project.pbl3.model.users;
-import com.project.pbl3.model.users_roles;
+import com.project.pbl3.model.Role;
+import com.project.pbl3.model.User;
+import com.project.pbl3.model.User_Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,21 +12,21 @@ import java.util.*;
 public class MyUserDetail implements UserDetails {
 
 
-    private users user;
+    private User user;
 
-    public MyUserDetail(users users) {
-        user = users;
+    public MyUserDetail(User User) {
+        user = User;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<roles> role = new HashSet<>();
+        Set<Role> role = new HashSet<>();
         System.out.println(user.getUsers_roles());
-        for(users_roles i:user.getUsers_roles()){
+        for(User_Role i:user.getUsers_roles()){
             role.add(i.getRoles());
         }
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
-        for(roles r : role){
+        for(Role r : role){
             authorityList.add(new SimpleGrantedAuthority(r.getName()));
         }
         return authorityList;

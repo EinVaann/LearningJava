@@ -42,16 +42,16 @@
                         </tr>
                     </thead>
                     <tbody id="teacher-list">
-                    <tr th:each="users : ${usersList}">
+                    <tr th:each="User : ${userList}">
                         <ul >
-                            <td th:text="${users.getId()}"></td>
-                            <td th:text="${users.getUsername()}"></td>
-                            <td th:text="${users.getTeacherId()}"></td>
+                            <td th:text="${User.getId()}"></td>
+                            <td th:text="${User.getUsername()}"></td>
+                            <td th:text="${User.getTeacherId()}"></td>
                             <div th:each="userRole:${userRoleList}">
-                            <td th:if="${userRole.getUsers().getId()==users.getId()}"
+                            <td th:if="${userRole.getUsers().getId()==User.getId()}"
                                 th:text="${userRole.getRoles().getName()}"></td></div>
-                           <td><span th:if="${users.getTeacherId()==0}"><a th:href="@{'edit-teacher?id='+${users.getId()}}">Edit</a> | </span>
-                                <span><a th:href="@{'delete-user?id='+${users.getId()}}" >Delete</a> | </span> </td>
+                           <td><span th:if="${User.getTeacherId()==0}"><a th:href="@{'edit-teacher?id='+${User.getId()}}">Edit</a> | </span>
+                                <span><a th:href="@{'delete-user?id='+${User.getId()}}" >Delete</a> | </span> </td>
                         </ul>
                     </tr>
                     </tbody>

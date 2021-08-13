@@ -1,7 +1,7 @@
 package com.project.pbl3.service;
 
 
-import com.project.pbl3.model.users;
+import com.project.pbl3.model.User;
 import com.project.pbl3.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,8 +16,8 @@ public class UserServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Iterable<users> usersIterable = userRepository.findAll();
-        for(users u: usersIterable){
+        Iterable<User> usersIterable = userRepository.findAll();
+        for(User u: usersIterable){
             if(u.getUsername().compareTo(s)==0){
                 return new MyUserDetail(u);
             }

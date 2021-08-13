@@ -38,7 +38,7 @@
             </ul>
         </table>
         <div>
-            <form class="period_input" th:object="${periods}" th:action="@{/edit-period}" method="post">
+            <form class="period_input" th:object="${Period}" th:action="@{/edit-period}" method="post">
                 <input type="text" id="id" name="ID" hidden>
                 <input type="text" id="subjectID" name="subjectID" hidden>
                 <input type="text" id="grade" name="grade" hidden>

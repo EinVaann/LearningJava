@@ -3,36 +3,37 @@ package com.project.pbl3.model;
 import javax.persistence.*;
 
 @Entity
-public class users_roles {
+@Table(name="users_roles")
+public class User_Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne(cascade =CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
-    users users;
+    User User;
 
     @ManyToOne(cascade = CascadeType.DETACH)
     @JoinColumn(name ="role_id")
-    roles roles;
+    Role Role;
 
     public Integer getId() {
         return id;
     }
 
-    public com.project.pbl3.model.users getUsers() {
-        return users;
+    public User getUsers() {
+        return User;
     }
 
-    public void setUsers(com.project.pbl3.model.users users) {
-        this.users = users;
+    public void setUsers(User User) {
+        this.User = User;
     }
 
-    public com.project.pbl3.model.roles getRoles() {
-        return roles;
+    public Role getRoles() {
+        return Role;
     }
 
-    public void setRoles(com.project.pbl3.model.roles roles) {
-        this.roles = roles;
+    public void setRoles(Role Role) {
+        this.Role = Role;
     }
 }

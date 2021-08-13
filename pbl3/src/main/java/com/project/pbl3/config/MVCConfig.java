@@ -11,15 +11,14 @@ public class MVCConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/error").setViewName("error");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/teacher").setViewName("teacher");
+        registry.addViewController("/teacher-list").setViewName("teacher");
         registry.addViewController("/add-teacher").setViewName("add-teacher");
         registry.addViewController("/edit-teacher").setViewName("edit-teacher");
-        registry.addViewController("/student").setViewName("studentList");
-        registry.addViewController("/period").setViewName("Period");
-        registry.addViewController("/class-list").setViewName("classList");
-        registry.addViewController("/403").setViewName("403");
+        registry.addViewController("/student-list").setViewName("student-list");
+        registry.addViewController("/period").setViewName("period");
+        registry.addViewController("/class-list").setViewName("class-list");
         registry.addViewController("/register").setViewName("register");
-        registry.addViewController("/register_success").setViewName("register_success");
-        registry.addViewController("/users-list").setViewName("users-list");
+        registry.addViewController("/users-list").setViewName("users");
+        registry.addViewController("/access_denied").setViewName("access-denied");
     }
 }

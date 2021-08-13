@@ -1,7 +1,7 @@
 package com.project.pbl3.controller;
 
-import com.project.pbl3.model.classes;
-import com.project.pbl3.service.ClassService;
+import com.project.pbl3.model.Class;
+import com.project.pbl3.repositories.ClassRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,20 +13,20 @@ import java.util.List;
 @Controller
 public class classController {
     @Autowired
-    private ClassService classService;
+    private ClassRepository classRepository;
 
     @GetMapping("/class-list")
     public String getClassList(Model model, @RequestParam(name="grade",required = false) String Grade){
-        List<classes> classList = new ArrayList<>();
+        List<Class> classList = new ArrayList<>();
         if(Grade!=null && Grade.compareTo("all-grade")!=0) {
             try {
-                classList = classService.getClassByGrade(Grade);
+                classList = classRepository.getClassByGrade("%"+Grade+"%");
             }catch (Exception e) {
                 e.printStackTrace();
             }
-        }else classList = classService.findAll();
+        }else classList = classRepository.findAll();
         model.addAttribute("classList",classList);
-        return "classList";
+        return "class-list";
     }
 
     @GetMapping("/add-class")
@@ -35,29 +35,29 @@ public class classController {
     }
 
     @PostMapping("/add-class")
-    public String addClass(@ModelAttribute("classes") classes info)
+    public String addClass(@ModelAttribute("classes") Class info)
     {
         System.out.println(info.getID()+""+info.getName());
-        classService.save(info);
+        classRepository.save(info);
         return "redirect:/class-list";
     }
     @PostMapping("/edit-class")
-    public String editClass(@ModelAttribute("classes") classes classes){
-        System.out.println(classes.getID()+""+classes.getName());
-        classService.save(classes);
+    public String editClass(@ModelAttribute("classes") Class Class){
+        System.out.println(Class.getID()+""+ Class.getName());
+        classRepository.save(Class);
         return "redirect:/class-list";
     }
 
     @GetMapping("/edit-class")
     public String editTeacher(Model model,@RequestParam int id){
-        classes classInfo = classService.getClassByID(id);
+        Class classInfo = classRepository.getOne(id);
         model.addAttribute("classInfo",classInfo);
         return "edit-class";
     }
 
     @RequestMapping("/delete-class")
     public String deleteTeacher(@RequestParam int id){
-       classService.deleteByID(id);
+       classRepository.deleteById(id);
         return "redirect:/class-list";
     }
 }

@@ -12,7 +12,7 @@
 <body>
 <div class="container mt-4">
     <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Sửa <span class="text-primary"> </span>Giáo Viên</h1>
-    <form id="teacher-form" th:action="@{/edit-student}" th:object="${students}" method="post">
+    <form id="teacher-form" th:action="@{/edit-student}" th:object="${Student}" method="post">
         <div class="form-group">
             <label for="id">ID</label>
             <input type="text" id="id" class="form-control" name="ID" hidden th:value="${studentInfo.ID}">
@@ -24,7 +24,7 @@
         <div class="form-group">
             <label for="class">Lớp</label>
             <select   id="class" class="form-control" name="classId">
-                <option th:each="class1 : ${classesList}" th:value="${class1.ID}" th:text="${class1.name}"/>
+                <option th:each="class1 : ${classList}" th:value="${class1.ID}" th:text="${class1.name}"/>
             </select>
         </div>
         <div th:value="${studentInfo.classId}" id="hidden" ></div>

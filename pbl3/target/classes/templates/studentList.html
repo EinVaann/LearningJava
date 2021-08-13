@@ -17,7 +17,7 @@
     </div>
 
     <div class="sidebar-menu">
-        <div class="all-grade" onclick="addUrlParameter('grade','all')">Tất Cả Khối</div>
+        <div class="all" onclick="addUrlParameter('grade','all')">Tất Cả Khối</div>
         <div class="10" onclick="addUrlParameter('grade','10')">Khối 10</div>
         <div class="11" onclick="addUrlParameter('grade','11')">Khối 11</div>
         <div class="12" onclick="addUrlParameter('grade','12')">Khối 12</div>
@@ -32,10 +32,12 @@
         </h2>
     </header>
     <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Danh <span class="text-primary">Sách </span>Học Sinh</h1>
-    <form th:action="@{/student}">
+    <!--<form th:action="@{/student}">
+    <input id="txtSearch" type ="text" name="keyword" >
+       <input type="button" value="Search">
+    </form>-->
     <input id="txtSearch" type ="text" name="keyword">
-       <input type="submit" value="Search">
-    </form>
+    <input type="button" value="Search" onclick="search()">
     <table id ="studentTable"class="table table-striped mt-5">
         <thead>
         <tr>
@@ -61,27 +63,34 @@
         </tr>
         <script>
             function addUrlParameter(name, value) {
-                var searchParams = new URLSearchParams(window.location.search)
+                let searchParams = new URLSearchParams(window.location.search)
                 searchParams.set(name, value)
                 window.location.search = searchParams.toString()
             }
             function search(){
-                const s = document.getElementById('txtSearch');
-                addUrlParameter('search',);
+                const s = document.getElementById('txtSearch').value;
+
+                addUrlParameter('keyword',s);
             }
             const queryString = window.location.search;
             console.log(queryString)
             const urlParam = new URLSearchParams(queryString)
 
             window.onload = function (){
-                let param = urlParam.get('grade')!=null?urlParam.get('grade'):'all';
-                let div = document.getElementsByClassName(param);
-                div[0].classList.add("active");
+                const s = document.getElementById('txtSearch');
 
-                param =  urlParam.get('sort')!=null?urlParam.get('sort'):'id';
-                alert(param);
-                div = document.getElementById(param);
-                div.checked = true;
+
+                let param1 = urlParam.get('grade')!=null?urlParam.get('grade'):'all';
+                let div1 = document.getElementsByClassName(param1);
+                div1[0].classList.add("active");
+
+                let param2 =  urlParam.get('sort')!=null?urlParam.get('sort'):'id';
+                let div2 = document.getElementById(param2);
+                div2.checked = true;
+
+                let param3 =  urlParam.get('keyword')!=null?urlParam.get('keyword'):'';
+                let div3 = document.getElementById('txtSearch');
+                div3.setAttribute('placeholder',param3);
             }
         </script>
         </tbody>

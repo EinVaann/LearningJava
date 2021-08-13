@@ -1,41 +1,40 @@
 package com.project.pbl3.controller;
 
-import com.project.pbl3.model.periods;
-import com.project.pbl3.model.subjects;
-import com.project.pbl3.service.PeriodService;
-import com.project.pbl3.service.SubjectService;
+import com.project.pbl3.model.Period;
+import com.project.pbl3.model.Subject;
+import com.project.pbl3.repositories.PeriodRepository;
+import com.project.pbl3.repositories.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
 @Controller
 public class periodController {
     @Autowired
-    private PeriodService periodService;
+    private PeriodRepository periodRepository;
     @Autowired
-    private SubjectService subjectService;
+    private SubjectRepository subjectRepository;
 
     @GetMapping("/period")
     private String GetPeriod(Model model){
-        List<periods> periodsList = periodService.findAll();
-        List<subjects> subjectsList = subjectService.findAll();
+        List<Period> periodList = periodRepository.findAll();
+        List<Subject> subjectList = subjectRepository.findAll();
         //System.out.print(periodsList.size());
-        model.addAttribute("periodList",periodsList);
-        model.addAttribute("subjectList",subjectsList);
-        return "Period";
+        model.addAttribute("periodList", periodList);
+        model.addAttribute("subjectList", subjectList);
+        return "period";
     }
 
     @PostMapping("/edit-period")
-    private String save(@ModelAttribute("periods") periods periods) throws Exception {
-        periods newPeriod = periodService.findByID(periods.getID()+1);
-        newPeriod.setPeriod(periods.getPeriod());
-        periodService.save(newPeriod);
+    private String save(@ModelAttribute("periods") Period Period) throws Exception {
+        Period newPeriod = periodRepository.getOne(Period.getID()+1);
+        newPeriod.setPeriod(Period.getPeriod());
+        periodRepository.save(newPeriod);
         return "redirect:/period";
     }
 

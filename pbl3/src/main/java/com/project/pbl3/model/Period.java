@@ -3,8 +3,8 @@ package com.project.pbl3.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="periods")
-public class periods {
+@Table(name="period")
+public class Period {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;

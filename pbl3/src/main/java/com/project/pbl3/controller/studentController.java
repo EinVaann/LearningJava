@@ -1,72 +1,84 @@
 package com.project.pbl3.controller;
 
 
-import com.project.pbl3.model.classes;
-import com.project.pbl3.model.students;
-import com.project.pbl3.model.subjects;
-import com.project.pbl3.model.teachers;
-import com.project.pbl3.service.ClassService;
-import com.project.pbl3.service.StudentService;
-import com.project.pbl3.service.SubjectService;
+import com.project.pbl3.model.Class;
+import com.project.pbl3.model.Student;
+import com.project.pbl3.repositories.ClassRepository;
+import com.project.pbl3.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 
 @Controller
 public class studentController {
 
+
     @Autowired
-    private StudentService studentService;
+    private StudentRepository studentRepository;
+
     @Autowired
-    private ClassService classService;
+    private ClassRepository classRepository;
 
     @GetMapping("/student")
     private String getStudentList(Model model,@RequestParam(name="grade",required = false)String grade,
                                   @RequestParam(name="sort",required = false) String sort,
                                   @RequestParam(name="keyword",required = false)String keyword) {
-        List<students> studentList = studentService.findRequire(grade,sort,keyword);
+        if(grade==null || grade.compareTo("all")==0) grade="";
+        if(keyword==null) keyword="";
+        List<Student> studentList = studentRepository.findRequire("%"+grade+"%","%"+keyword+"%");
+        if(sort!=null){
+            System.out.println(sort.compareTo("id"));
+            if(sort.compareTo("id")==0){
+                studentList.sort((t1, t2) -> {
+                    if (t1.getID()>t2.getID()) return 1;
+                    return -1;
+                });
+            }
+            if(sort.compareTo("name")==0)
+                studentList.sort(Comparator.comparing(Student::getName));
+        }
         model.addAttribute("studentList", studentList);
        // model.addAttribute("grade", grade);
-        return "studentList";
+        return "student-list";
     }
 
     @GetMapping("add-student")
     public String addStudent(Model model) {
-        List<classes> classesList = classService.findAll();
-        model.addAttribute("classesList", classesList);
+        List<Class> classList = classRepository.findAll();
+        model.addAttribute("classesList", classList);
         return "add-student";
     }
 
     @PostMapping("add-student")
-    public String addStudent(@ModelAttribute("students") students studentInfo) {
-        studentService.save(studentInfo);
+    public String addStudent(@ModelAttribute("students") Student studentInfo) {
+        studentRepository.save(studentInfo);
         return "redirect:/student";
     }
 
     @GetMapping("edit-student")
     public String editStudent(Model model, @RequestParam int id) {
-        students students = studentService.getStudentByID(id);
-        model.addAttribute("studentInfo", students);
-        List<classes> classesList = classService.findAll();
-        model.addAttribute("classesList", classesList);
+        Student Student = studentRepository.getOne(id);
+        model.addAttribute("studentInfo", Student);
+        List<Class> classList = classRepository.findAll();
+        model.addAttribute("classesList", classList);
         return "edit-student";
     }
 
     @PostMapping("edit-student")
-    public String editStudent(@ModelAttribute("students") students studentInfo) {
-        studentService.save(studentInfo);
+    public String editStudent(@ModelAttribute("students") Student studentInfo) {
+        studentRepository.save(studentInfo);
         return "redirect:/student";
     }
 
 
     @RequestMapping("delete-student")
     public String deleteTeacher(@RequestParam int id) {
-        studentService.deleteStudentByID(id);
+        studentRepository.deleteById(id);
         return "redirect:/student";
     }
 

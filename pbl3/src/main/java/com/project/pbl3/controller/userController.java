@@ -1,15 +1,12 @@
 package com.project.pbl3.controller;
 
-import com.project.pbl3.model.roles;
-import com.project.pbl3.model.teachers;
-import com.project.pbl3.model.users;
-import com.project.pbl3.model.users_roles;
+import com.project.pbl3.model.Role;
+import com.project.pbl3.model.User;
+import com.project.pbl3.model.User_Role;
 import com.project.pbl3.repositories.RoleRepository;
 import com.project.pbl3.repositories.UserRepository;
 import com.project.pbl3.repositories.UserRoleRepository;
 import com.project.pbl3.service.PasswordEncoder;
-import com.project.pbl3.service.TeacherService;
-import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,33 +22,26 @@ public class userController {
     private UserRoleRepository userRoleRepository;
     @Autowired
     private RoleRepository roleRepository;
-    @Autowired
-    private TeacherService teacherService;
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("users")users users){
-        List<users> usersList = userRepository.findAll();
-        for(users u: usersList){
-            if(u.getUsername().compareTo(users.getUsername())==0)
+    public String register(@ModelAttribute("users") User User){
+        List<User> userList = userRepository.findAll();
+        for(User u: userList){
+            if(u.getUsername().compareTo(User.getUsername())==0)
                 return "invalid";
         }
-        if(users.getUsername()=="" || users.getPassword()==""){
+        if(User.getUsername()=="" || User.getPassword()==""){
             return "invalid";
         }
 
-
-        /*teachers teachers = new teachers();
-        teachers.setEmail(users.getUsername());
-        teacherService.save(teachers);
-        users.setTeacherId(teachers.getID());*/
-        users.setPassword(PasswordEncoder.getEncodePass(users.getPassword()));
-        users.setEnable(true);
-        users.setTeacherId(0);
-        userRepository.save(users);
-        users_roles users_roles = new users_roles();
-        users_roles.setUsers(users);
-        users_roles.setRoles(roleRepository.getOne(3));
-        userRoleRepository.save(users_roles);
+        User.setPassword(PasswordEncoder.getEncodePass(User.getPassword()));
+        User.setEnable(true);
+        User.setTeacherId(0);
+        userRepository.save(User);
+        User_Role User_Role = new User_Role();
+        User_Role.setUsers(User);
+        User_Role.setRoles(roleRepository.getOne(3));
+        userRoleRepository.save(User_Role);
         return "/register_success";
     }
 
@@ -62,13 +52,13 @@ public class userController {
 
     @GetMapping("/users-list")
     public String getUsersList(Model model){
-        List<users> usersList = userRepository.findAll();
-        model.addAttribute("usersList",usersList);
-        List<roles> rolesList = roleRepository.findAll();
-        model.addAttribute("rolesList",rolesList);
-        List<users_roles> usersRolesList = userRoleRepository.findAll();
+        List<User> userList = userRepository.findAll();
+        model.addAttribute("usersList", userList);
+        List<Role> roleList = roleRepository.findAll();
+        model.addAttribute("rolesList", roleList);
+        List<User_Role> usersRolesList = userRoleRepository.findAll();
         model.addAttribute("userRoleList",usersRolesList);
-        return "users-list";
+        return "users";
     }
 
     @RequestMapping("/delete-user")

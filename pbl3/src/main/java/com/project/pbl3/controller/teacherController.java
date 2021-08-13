@@ -1,9 +1,9 @@
 package com.project.pbl3.controller;
 
-import com.project.pbl3.model.subjects;
-import com.project.pbl3.model.teachers;
-import com.project.pbl3.service.SubjectService;
-import com.project.pbl3.service.TeacherService;
+import com.project.pbl3.model.Subject;
+import com.project.pbl3.model.Teacher;
+import com.project.pbl3.repositories.SubjectRepository;
+import com.project.pbl3.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,23 +17,23 @@ import java.util.List;
 public class teacherController {
 
     @Autowired
-    private TeacherService teacherService;
+    private TeacherRepository teacherRepository;
     @Autowired
-    private SubjectService subjectService;
+    private SubjectRepository subjectRepository;
 
     @GetMapping("/teacher")
     public String getTeacherList(Model model, @RequestParam(name="subject",required = false) String subjectName,
                                  @RequestParam(name="sort",required = false) String sort){
-        List<teachers> teacherList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
         //System.out.println(subjectName);
         if(subjectName!=null && subjectName.compareTo("all-subject")!=0) {
             try {
-                Integer subjectID = subjectService.getClassIdByName(subjectName);
-                teacherList = teacherService.getTeacherBySubject(subjectID);
+                Integer subjectID = subjectRepository.getClassByName(subjectName).getID();
+                teacherList = teacherRepository.getTeacherBySubject(subjectID);
             }catch (Exception e) {
                 e.printStackTrace();
             }
-        }else teacherList = teacherService.findAll();
+        }else teacherList = teacherRepository.findAll();
 
         if(sort!=null){
             System.out.println(sort.compareTo("id"));
@@ -44,7 +44,7 @@ public class teacherController {
                 });
             }
             if(sort.compareTo("name")==0){
-                teacherList.sort((t1, t2) -> t1.getName().compareTo(t2.getName()));
+                teacherList.sort(Comparator.comparing(Teacher::getName));
             }
         }
         //System.out.println(teacherList.size());
@@ -54,39 +54,39 @@ public class teacherController {
 
     @GetMapping("/add-teacher")
     public String addTeacher(Model model){
-        List<subjects> subjectsList= subjectService.findAll();
-        model.addAttribute("subjectList",subjectsList);
+        List<Subject> subjectList = subjectRepository.findAll();
+        model.addAttribute("subjectList", subjectList);
         return "add-teacher";
 
     }
 
     @PostMapping("/add-teacher")
-    public String addTeacher(@ModelAttribute("teachers") teachers teacherInfo){
-        teacherService.save(teacherInfo);
+    public String addTeacher(@ModelAttribute("teachers") Teacher teacherInfo){
+        teacherRepository.save(teacherInfo);
 
         //System.out.println(teacherInfo.getEmail());
         return "redirect:/teacher";
     }
     @PostMapping("/edit-teacher")
-    public String editTeacher(@ModelAttribute("teachers") teachers teacherInfo){
-        teacherService.save(teacherInfo);
+    public String editTeacher(@ModelAttribute("teachers") Teacher teacherInfo){
+        teacherRepository.save(teacherInfo);
         //System.out.println(teacherInfo.getEmail());
         return "redirect:/teacher";
     }
 
     @GetMapping("/edit-teacher")
     public String editTeacher(Model model,@RequestParam int id){
-        teachers teachers = teacherService.getTeacherById(id);
-        model.addAttribute("teacherInfo",teachers);
-        List<subjects> subjectsList= subjectService.findAll();
-        model.addAttribute("subjectList",subjectsList);
+        Teacher Teacher = teacherRepository.getOne(id);
+        model.addAttribute("teacherInfo", Teacher);
+        List<Subject> subjectList = subjectRepository.findAll();
+        model.addAttribute("subjectList", subjectList);
         return "edit-teacher";
     }
 
 
     @RequestMapping("/delete-teacher")
     public String deleteTeacher(@RequestParam int id){
-        teacherService.deleteTeacherById(id);
+        teacherRepository.deleteById(id);
         return "redirect:/teacher";
     }
 }

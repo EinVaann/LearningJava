@@ -5,18 +5,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
-public class teachers {
+public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer ID;
 
     private String name;
 
-    private Integer subjectID;
+    private Integer classId;
 
-    private String phone;
+    private String phoneNumber;
 
     private String email;
 
@@ -36,12 +35,20 @@ public class teachers {
         this.name = name;
     }
 
-    public String getPhone() {
-        return phone;
+    public Integer getClassId() {
+        return classId;
     }
 
-    public void setPhone(String phoneNumber) {
-        this.phone = phoneNumber;
+    public void setClassId(Integer classId) {
+        this.classId = classId;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -50,13 +57,5 @@ public class teachers {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Integer getSubjectID() {
-        return subjectID;
-    }
-
-    public void setSubjectID(Integer subjectID) {
-        this.subjectID = subjectID;
     }
 }
