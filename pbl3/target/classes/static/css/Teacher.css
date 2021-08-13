@@ -115,3 +115,4 @@ header label span {
 .radio-button:checked + .triangle{
     border-top:17px solid #000;
 }
+#container p { display: inline }

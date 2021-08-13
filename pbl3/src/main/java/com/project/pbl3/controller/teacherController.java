@@ -64,13 +64,13 @@ public class teacherController {
         teacherRepository.save(teacherInfo);
 
         //System.out.println(teacherInfo.getEmail());
-        return "redirect:/teacher";
+        return "redirect:/teacher-list";
     }
     @PostMapping("/edit-teacher")
     public String editTeacher(@ModelAttribute("teachers") Teacher teacherInfo){
         teacherRepository.save(teacherInfo);
         //System.out.println(teacherInfo.getEmail());
-        return "redirect:/teacher";
+        return "redirect:/teacher-list";
     }
 
     @GetMapping("/edit-teacher")
@@ -86,6 +86,6 @@ public class teacherController {
     @RequestMapping("/delete-teacher")
     public String deleteTeacher(@RequestParam int id){
         teacherRepository.deleteById(id);
-        return "redirect:/teacher";
+        return "redirect:/teacher-list";
     }
 }

@@ -47,13 +47,13 @@
                             <td th:text="${User.getId()}"></td>
                             <td th:text="${User.getUsername()}"></td>
                             <td th:text="${User.getTeacherId()}"></td>
-                            <div th:each="userRole : ${userRoleList}">
-                            <td th:if="${userRole.getUsers().getId()==User.getId()}"
-                                th:text="${userRole.getRoles().getName()}"></td></div>
+                            <td th:each="userRole : ${userRoleList}" th:if="${userRole.getUsers().getId()==User.getId()}">
+                                <p class="inline" th:text="${userRole.getRoles().getName()}"></p>
+                            </td>
                            <td th:if="${User.getId()!=1}">
                                <span th:if="${User.getTeacherId()==0}"><a th:href="@{'link-user?id='+${User.getId()}}">Link</a> | </span>
                                <span><a th:href="@{'delete-user?id='+${User.getId()}}" >Delete</a> | </span>
-                               <span><a th:href="@{'reset-password'}" >Reset</a> | </span></td>
+                               <span><a th:href="@{'re-password?id='+${User.getId()}}" >Reset</a> | </span></td>
                         </ul>
                     </tr>
                     </tbody>

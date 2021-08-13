@@ -57,7 +57,7 @@ public class studentController {
     @PostMapping("add-student")
     public String addStudent(@ModelAttribute("students") Student studentInfo) {
         studentRepository.save(studentInfo);
-        return "redirect:/student";
+        return "redirect:/student-list";
     }
 
     @GetMapping("edit-student")
@@ -72,14 +72,14 @@ public class studentController {
     @PostMapping("edit-student")
     public String editStudent(@ModelAttribute("students") Student studentInfo) {
         studentRepository.save(studentInfo);
-        return "redirect:/student";
+        return "redirect:/student-list";
     }
 
 
     @RequestMapping("delete-student")
     public String deleteTeacher(@RequestParam int id) {
         studentRepository.deleteById(id);
-        return "redirect:/student";
+        return "redirect:/student-list";
     }
 
 }

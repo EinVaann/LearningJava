@@ -12,7 +12,7 @@
 <body>
 <div class="container mt-4">
     <h1 class="display-4 text-center"><i class="fas fa-book-open text-primary"></i>Sửa <span class="text-primary"> </span>User</h1>
-    <form id="user-form" th:action="@{/edit-user}" th:object="${User}" method="post">
+    <form id="user-form" th:action="@{/link-user}" th:object="${User}" method="post">
         <div class="form-group">
             <label for="id">ID</label>
             <input type="text" id="id" class="form-control" name=id readonly="true" th:value="${userInfo.id}">
@@ -26,19 +26,23 @@
             <input type="text" id="password" class="form-control" name="password" hidden th:value="${userInfo.password}">
         </div>
         <div class="form-group">
-          <!--  <label for="roles"></label>
-            <select id="roles" class="form-control" name="name">
-                <option th:each="roles : ${rolesList}" th:value="${roles.getId()}" th:text="${roles.getName()}"/>
-            </select>-->
+            <!--<label for="password">Password</label>-->
+            <input type="text" id="isEnable" class="form-control" name="enable" hidden th:value="${userInfo.enable}">
         </div>
         <div class="form-group">
-            <label for="teacher">ID Giáo viên</label>
+            <label for="roles"></label>
+            <select id="roles" class="form-control" name="name" hidden>
+                <option th:each="roles : ${rolesList}" th:value="${roles.getId()}" th:text="${roles.getName()}"/>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="teacher"></label>
             <select id="teacher" class="form-control" name="teacherId">
                 <option th:each="teacher : ${teachersList1}" th:value="${teacher.getID()}"
                         th:text="${teacher.getID()}+'  '+${teacher.getName()}"/>
             </select>
         </div>
-        <input type="submit" value="Edit" class="btn btn-block btn-primary">
+        <input type="submit" value="Link" class="btn btn-block btn-primary">
     </form>
 </div>
 </body>

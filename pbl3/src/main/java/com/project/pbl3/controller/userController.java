@@ -14,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class userController {
@@ -71,8 +73,15 @@ public class userController {
 
     @PostMapping("link-user")
     public String editUser(@ModelAttribute("users") User userInfo){
+
+        List<User_Role> user_roleList = userRoleRepository.findAll();
+        for(User_Role u: user_roleList) {
+            if(u.getUsers().getId()==userInfo.getId()){
+                u.setRoles(roleRepository.getOne(2));
+            }
+        }
         userRepository.save(userInfo);
-        return "redirect:/user";
+        return "redirect:/users-list";
     }
     @GetMapping("/link-user")
     public String linkUser (Model model,@RequestParam int id){
@@ -84,5 +93,17 @@ public class userController {
         System.out.print(teachersList1.size());
         model.addAttribute("rolesList",rolesList);
         return "link-user";
+    }
+    @RequestMapping("re-password")
+    public String rePassword(@RequestParam int id)
+    {
+        List<User> users = userRepository.findAll();
+        for (User s:users) {
+            if(s.getId()==id) {
+                s.setPassword(PasswordEncoder.getEncodePass("1234"));
+                userRepository.save(s);
+            }
+        }
+        return "redirect:/user-list";
     }
 }
