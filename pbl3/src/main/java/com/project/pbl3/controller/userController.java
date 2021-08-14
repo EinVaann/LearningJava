@@ -104,7 +104,7 @@ public class userController {
                 userRepository.save(s);
             }
         }
-        return "redirect:/user-list";
+        return "redirect:/users-list";
     }
 
     @RequestMapping("/change-pass")
