@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b20c297-2908-4184-a242-47ae1a9d71d9" name="Default Changelist" comment="xong Search student đơn giản">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/theme.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/home.html" afterDir="false" />
-    </list>
+    <list default="true" id="2b20c297-2908-4184-a242-47ae1a9d71d9" name="Default Changelist" comment="xong Search student đơn giản" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,17 +81,6 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Pbl3Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="demo" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.project.pbl3.Pbl3Application" />
@@ -141,6 +126,9 @@
       <workItem from="1628909825173" duration="6997000" />
       <workItem from="1628941612756" duration="3873000" />
       <workItem from="1628945578746" duration="599000" />
+      <workItem from="1628946842757" duration="54000" />
+      <workItem from="1628946992251" duration="186000" />
+      <workItem from="1628947281698" duration="262000" />
     </task>
     <task id="LOCAL-00001" summary="Xong phần class, bị lỗi nhỏ mấy k ra nên hơi lâu">
       <created>1623237983134</created>

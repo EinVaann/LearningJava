@@ -58,7 +58,7 @@ public class studentController {
     @PostMapping("add-student")
     public String addStudent(@ModelAttribute("students") Student studentInfo) {
         List<Student> students = studentRepository.getStudentByEmail(studentInfo.getEmail());
-        if(students==null) {
+        if(students.size()==0) {
             studentRepository.save(studentInfo);
 
             //System.out.println(teacherInfo.getEmail());
@@ -78,7 +78,7 @@ public class studentController {
     @PostMapping("edit-student")
     public String editStudent(@ModelAttribute("students") Student studentInfo) {
         List<Student> students = studentRepository.getStudentByEmail(studentInfo.getEmail());
-        if(students==null) {
+        if(students.size()==0) {
             studentRepository.save(studentInfo);
 
             //System.out.println(teacherInfo.getEmail());
