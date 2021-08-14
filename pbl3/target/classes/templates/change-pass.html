@@ -16,11 +16,11 @@
              <input type="hidden" name="token" th:value="${token}">
             <div class="form-group">
                 <label for="new-pass">Mật khẩu mới</label>
-                <input type="text" id="new-pass" name="fname" class="form-control">
+                <input type="password" id="new-pass" name="fname" class="form-control">
             </div>
             <div class="form-group">
                 <label for="confirm">Nhập lại mật khẩu</label>
-                <input type="text" id="confirm" name="fcname" class="form-control">
+                <input type="password" id="confirm" name="fcname" class="form-control">
             </div>
             <input type="submit" class="btn btn-block btn-primary">
             <input type="button" onclick="window.location.href='/abort-change'" class="btn btn-block btn-primary" value="Cancel">

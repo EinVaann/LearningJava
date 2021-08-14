@@ -15,7 +15,7 @@
             <form th:action="@{/confirm-pass}" name="myForm" onsubmit="return validateForm()" method="post">
                  <div class="form-group">
                      <label for="old-pass">Mật khẩu cũ</label>
-                     <input type="text" id="old-pass" class="form-control" name="fname">
+                     <input type="password" id="old-pass" class="form-control" name="fname">
                  </div>
                 <input type="submit" class="btn btn-block btn-primary">
                 <input type="button" onclick="window.location.href='/'" class="btn btn-block btn-primary" value="Cancel">
