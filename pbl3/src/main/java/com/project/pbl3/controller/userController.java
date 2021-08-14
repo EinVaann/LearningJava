@@ -9,11 +9,15 @@ import com.project.pbl3.repositories.TeacherRepository;
 import com.project.pbl3.repositories.UserRepository;
 import com.project.pbl3.repositories.UserRoleRepository;
 import com.project.pbl3.service.PasswordEncoder;
+import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -36,10 +40,6 @@ public class userController {
             if(u.getUsername().compareTo(User.getUsername())==0)
                 return "invalid";
         }
-        if(User.getUsername()=="" || User.getPassword()==""){
-            return "invalid";
-        }
-
         User.setPassword(PasswordEncoder.getEncodePass(User.getPassword()));
         User.setEnable(true);
         User.setTeacherId(0);
@@ -105,5 +105,43 @@ public class userController {
             }
         }
         return "redirect:/user-list";
+    }
+
+    @RequestMapping("/change-pass")
+    public String chPassword(HttpServletRequest request){
+        String token = request.getParameter("token");
+        String newPass = request.getParameter("fname");
+        User user = userRepository.findUserByToken(token);
+        user.setPassword(PasswordEncoder.getEncodePass(newPass));
+        user.setChangePasswordToken("");
+        userRepository.save(user);
+        return "redirect:/";
+    }
+
+    @GetMapping ("/change-pass")
+    public String getChPassword(@RequestParam String token,Model model){
+        model.addAttribute("token",token);
+        return "/change-pass";
+    }
+
+    @GetMapping("/confirm-pass")
+    public String confirmPassword(){
+        return "/confirm-pass";
+    }
+
+    @PostMapping("/confirm-pass")
+    public String confirmPassP(Authentication authentication, HttpServletRequest request){
+        String username = authentication.getName();
+        User user = userRepository.findUserByName(username);
+        String oldPass = request.getParameter("fname");
+        System.out.println("pass is:"+oldPass);
+        if(PasswordEncoder.match(oldPass,user.getPassword())) {
+            System.out.println("match");
+            String changeToken = RandomString.make(45);
+            user.setChangePasswordToken(changeToken);
+            userRepository.save(user);
+            return "redirect:/change-pass?token="+changeToken;
+        }
+        else return "invalid";
     }
 }

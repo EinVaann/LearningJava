@@ -1,0 +1,22 @@
+* {
+    /* outline: none; */
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+.error-page {
+    position: absolute;
+    top: 10%;
+    left: 17%;
+    right: 17%;
+    bottom: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content {
+    font-size: 30px;
+}
+
+h4 {
+    margin-bottom: 30px;
+}

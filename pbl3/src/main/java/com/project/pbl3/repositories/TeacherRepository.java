@@ -11,9 +11,12 @@ import java.util.List;
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher,Integer> {
 
-    @Query("SELECT t FROM Teacher t where t.subjectID = :subjectID")
+    @Query("SELECT t FROM Teacher t where t.subjectID = :subjectID and t.ID!=0")
     List<Teacher> getTeacherBySubject(@Param("subjectID")Integer subjectID);
 
     @Query("SELECT t from Teacher t  where t.ID not in (select c.teacherId from User c where c.id!=1) ")
     List<Teacher> findTeachersByNonUser();
+
+    @Query("SELECT t FROM Teacher t where t.ID!=0")
+    List<Teacher> findAllExc();
 }

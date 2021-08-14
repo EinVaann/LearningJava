@@ -22,6 +22,7 @@
             <div class="side"  onclick="changeURL('student-list')">Học sinh</div>
             <div class="side" onclick="changeURL('class-list')">Lớp Học</div>
             <div class="side" onclick="changeURL('period')">Số Tiết</div>
+            <div class="side" onclick="changeURL('confirm-pass')" sec:authorize="hasAnyAuthority('ADMIN','USER','VIEWER')">Đổi mật khẩu</div>
             <div class="side" onclick="changeURL('users-list')" sec:authorize="hasAnyAuthority('ADMIN')">Người dùng</div>
             <div class="not-side">
                 <span sec:authentication="name"></span>

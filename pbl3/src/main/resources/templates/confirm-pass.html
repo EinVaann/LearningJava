@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<link rel="stylesheet" href="Teacher.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Xác nhận</title>
+</head>
+<body>
+<div class="container mt-4">
+<span>Xác nhận mật khẩu cũ</span>
+<form th:action="@{/confirm-pass}" name="myForm" onsubmit="return validateForm()" method="post">
+    <div class="form-group">
+        <label for="old-pass">Mật khẩu cũ</label>
+        <input type="text" id="old-pass" name="fname">
+    </div>
+<input type="submit">
+</form>
+</div>
+</body>
+<script>
+    function validateForm() {
+        let x = document.forms["myForm"]["fname"].value;
+        if (x === "") {
+            alert("Name must be filled out");
+            return false;
+        }
+    }
+</script>
+</html>

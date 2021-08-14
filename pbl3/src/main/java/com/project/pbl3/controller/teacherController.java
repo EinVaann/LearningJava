@@ -33,7 +33,7 @@ public class teacherController {
             }catch (Exception e) {
                 e.printStackTrace();
             }
-        }else teacherList = teacherRepository.findAll();
+        }else teacherList = teacherRepository.findAllExc();
 
         if(sort!=null){
             System.out.println(sort.compareTo("id"));

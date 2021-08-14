@@ -16,6 +16,7 @@ public class User {
     private String password;
     private Boolean Enable;
     private Integer teacherId;
+    private String changePasswordToken;
 
     @OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "User")
     private Set<User_Role> User_Role;
@@ -66,5 +67,13 @@ public class User {
 
     public void setTeacherId(Integer teacherId) {
         this.teacherId = teacherId;
+    }
+
+    public String getChangePasswordToken() {
+        return changePasswordToken;
+    }
+
+    public void setChangePasswordToken(String changePasswordToken) {
+        this.changePasswordToken = changePasswordToken;
     }
 }

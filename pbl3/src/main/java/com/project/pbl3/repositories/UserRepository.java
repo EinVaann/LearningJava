@@ -11,4 +11,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
 
     @Query("select s from User s where s.username =?1")
     User findUserByName(String keyword);
+
+    @Query("select s from User s where s.changePasswordToken =?1")
+    User findUserByToken(String token);
 }
