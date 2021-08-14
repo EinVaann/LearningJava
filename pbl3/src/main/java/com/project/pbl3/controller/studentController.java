@@ -78,7 +78,7 @@ public class studentController {
     @PostMapping("edit-student")
     public String editStudent(@ModelAttribute("students") Student studentInfo) {
         List<Student> students = studentRepository.getStudentByEmail(studentInfo.getEmail());
-        if(students.size()==0) {
+        if(students.size()==0 || students.get(0).getID()==studentInfo.getID()) {
             studentRepository.save(studentInfo);
 
             //System.out.println(teacherInfo.getEmail());

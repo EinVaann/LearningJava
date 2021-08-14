@@ -47,7 +47,7 @@ public class classController {
     @PostMapping("/edit-class")
     public String editClass(@ModelAttribute("classes") Class info){
         List<Class> classes = classRepository.getClassByGrade(info.getName());
-        if(classes.size()==0) {
+        if(classes.size()==0 || classes.get(0).getID()==info.getID()) {
             classRepository.save(info);
             return "redirect:/class-list";
         }else return "/invalid";
