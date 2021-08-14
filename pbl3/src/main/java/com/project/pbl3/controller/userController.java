@@ -113,7 +113,16 @@ public class userController {
         String newPass = request.getParameter("fname");
         User user = userRepository.findUserByToken(token);
         user.setPassword(PasswordEncoder.getEncodePass(newPass));
-        user.setChangePasswordToken("");
+        user.setChangePasswordToken(null);
+        userRepository.save(user);
+        return "redirect:/";
+    }
+
+    @RequestMapping("/abort-change")
+    public String abChange(Authentication authentication){
+        String username = authentication.getName();
+        User user = userRepository.findUserByName(username);
+        user.setChangePasswordToken(null);
         userRepository.save(user);
         return "redirect:/";
     }
