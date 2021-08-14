@@ -37,15 +37,20 @@ public class classController {
     @PostMapping("/add-class")
     public String addClass(@ModelAttribute("classes") Class info)
     {
-        System.out.println(info.getID()+""+info.getName());
-        classRepository.save(info);
-        return "redirect:/class-list";
+        //System.out.println(info.getID()+""+info.getName());
+        List<Class> classes = classRepository.getClassByGrade(info.getName());
+        if(classes==null) {
+            classRepository.save(info);
+            return "redirect:/class-list";
+        }else return "/invalid";
     }
     @PostMapping("/edit-class")
-    public String editClass(@ModelAttribute("classes") Class Class){
-        System.out.println(Class.getID()+""+ Class.getName());
-        classRepository.save(Class);
-        return "redirect:/class-list";
+    public String editClass(@ModelAttribute("classes") Class info){
+        List<Class> classes = classRepository.getClassByGrade(info.getName());
+        if(classes==null) {
+            classRepository.save(info);
+            return "redirect:/class-list";
+        }else return "/invalid";
     }
 
     @GetMapping("/edit-class")

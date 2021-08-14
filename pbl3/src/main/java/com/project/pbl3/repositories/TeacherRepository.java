@@ -19,4 +19,7 @@ public interface TeacherRepository extends JpaRepository<Teacher,Integer> {
 
     @Query("SELECT t FROM Teacher t where t.ID!=0")
     List<Teacher> findAllExc();
+
+    @Query("SELECT t FROM Teacher t where t.email like :email")
+    List<Teacher> getTeacherByEmail(@Param("email")String email);
 }

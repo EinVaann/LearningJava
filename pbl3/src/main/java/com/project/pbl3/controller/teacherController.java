@@ -61,16 +61,23 @@ public class teacherController {
 
     @PostMapping("/add-teacher")
     public String addTeacher(@ModelAttribute("teachers") Teacher teacherInfo){
-        teacherRepository.save(teacherInfo);
+        List<Teacher> teacher = teacherRepository.getTeacherByEmail(teacherInfo.getEmail());
+        if(teacher==null) {
+            teacherRepository.save(teacherInfo);
 
-        //System.out.println(teacherInfo.getEmail());
-        return "redirect:/teacher-list";
+            //System.out.println(teacherInfo.getEmail());
+            return "redirect:/teacher-list";
+        }else return "/invalid";
     }
     @PostMapping("/edit-teacher")
     public String editTeacher(@ModelAttribute("teachers") Teacher teacherInfo){
-        teacherRepository.save(teacherInfo);
-        //System.out.println(teacherInfo.getEmail());
-        return "redirect:/teacher-list";
+        List<Teacher> teacher = teacherRepository.getTeacherByEmail(teacherInfo.getEmail());
+        if(teacher==null) {
+            teacherRepository.save(teacherInfo);
+
+            //System.out.println(teacherInfo.getEmail());
+            return "redirect:/teacher-list";
+        }else return "/invalid";
     }
 
     @GetMapping("/edit-teacher")

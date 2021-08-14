@@ -3,6 +3,7 @@ package com.project.pbl3.controller;
 
 import com.project.pbl3.model.Class;
 import com.project.pbl3.model.Student;
+import com.project.pbl3.model.Teacher;
 import com.project.pbl3.repositories.ClassRepository;
 import com.project.pbl3.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +57,13 @@ public class studentController {
 
     @PostMapping("add-student")
     public String addStudent(@ModelAttribute("students") Student studentInfo) {
-        studentRepository.save(studentInfo);
-        return "redirect:/student-list";
+        List<Student> students = studentRepository.getStudentByEmail(studentInfo.getEmail());
+        if(students==null) {
+            studentRepository.save(studentInfo);
+
+            //System.out.println(teacherInfo.getEmail());
+            return "redirect:/teacher-list";
+        }else return "/invalid";
     }
 
     @GetMapping("edit-student")
@@ -71,8 +77,13 @@ public class studentController {
 
     @PostMapping("edit-student")
     public String editStudent(@ModelAttribute("students") Student studentInfo) {
-        studentRepository.save(studentInfo);
-        return "redirect:/student-list";
+        List<Student> students = studentRepository.getStudentByEmail(studentInfo.getEmail());
+        if(students==null) {
+            studentRepository.save(studentInfo);
+
+            //System.out.println(teacherInfo.getEmail());
+            return "redirect:/teacher-list";
+        }else return "/invalid";
     }
 
 
