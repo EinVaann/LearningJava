@@ -82,7 +82,7 @@ public class studentController {
             studentRepository.save(studentInfo);
 
             //System.out.println(teacherInfo.getEmail());
-            return "redirect:/teacher-list";
+            return "redirect:/student-list";
         }else return "/invalid";
     }
 
